@@ -8,13 +8,14 @@
 typedef struct Player;
 typedef struct Bomb;
 typedef struct Move;
-typedef struct Move;
 typedef struct Map;
 
 //Funtions
 
 void menu();
 int resultMenu();
-void Play();
+int resultChoicPlayground();
+
+void Play(int i);
 
 #endif
