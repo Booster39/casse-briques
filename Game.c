@@ -5,6 +5,8 @@ typedef struct Map
     /* data */
     int nbBomb;
     char **map;
+    int x;
+    int y;
 
 } Map;
 typedef struct Move
@@ -31,13 +33,16 @@ typedef struct Player
     Bomb *bomb;
 } Player;
 
-Map *createMap(int nbrbomb, char *map)
+Map *createMap(int nbrbomb, char *map, int x, int y)
 {
-    Map *playground = malloc(sizeof(map));
-    playground->map = malloc(sizeof(map));
-    playground->nbBomb = nbrbomb;
-    return playground;
+    Map *Playground = malloc(sizeof(Map));
+    Playground->nbBomb = nbrbomb;
+    Playground->map = map;
+    Playground->x = x;
+    Playground->y = y;
+    return Playground;
 }
+
 Bomb *createBomb(int range2, int x2, int y2)
 {
     Bomb *Bombe = malloc(sizeof(Bomb));
@@ -66,27 +71,6 @@ Player *createPlayer(int nbrBombe1, int vie1, int x1, int y1, Bomb *bomb1)
     return player;
 }
 
-char map1[7][9] = {
-    {'2'},
-    {'9', ' ', '5'},
-    {'x', 'x', 'x', 'x', 'x', 'x', 'x', 'x', 'x'},
-    {'x', 'p', '-', 'm', 'm', 'm', 'x', 'm', 'x'},
-    {'-', '-', 'm', 'm', 'm', 'm', 'm', '-', '-'},
-    {'x', 'm', 'x', 'm', 'm', 'm', '-', 'g', 'x'},
-    {'x', 'x', 'x', 'x', 'x', 'x', 'x', 'x', 'x'}};
-// 4 - 0 // 4 - 8
-
-char map2[10][5] = {
-    {'1'},
-    {'5', ' ', '8'},
-    {'x', 'x', 'x', 'x', 'x'},
-    {'x', 'p', '-', 'm', 'x'},
-    {'x', 'm', 'x', 'm', 'x'},
-    {'-', '-', 'm', '-', '-'},
-    {'-', '-', 'x', 'm', '-'},
-    {'x', 'm', 'x', 'm', 'x'},
-    {'x', 'm', 'x', 'm', 'x'},
-    {'x', 'x', 'x', 'x', 'x'}};
 // 5 - 0 // 6 - 0 // 5 - 4 // 6 - 4 //
 // menu //
 void menu()
@@ -99,10 +83,10 @@ void menu()
 }
 void choicPlayground()
 {
-    printf("Choisirez votre terrain de jeux\n\n");
+    printf("\n\nChoisirez votre terrain de jeux\n\n");
     int i=0;
     int j=0;
-    printf(" Map 1 \n");
+    printf("    Map 1 \n");
     for (i = 2; i < 7; i++)
     {
         for (j = 0; j < 9; j++)
@@ -112,7 +96,11 @@ void choicPlayground()
         printf("\n");
         j = 0;
     }
-    printf(" Map 2 \n");
+    printf("\n");
+    printf("________________________\n");
+    printf("\n");
+    printf("    Map 2 \n");
+    
     for (i = 2; i < 10; i++)
     {
         for (j = 0; j < 5; j++)
@@ -122,6 +110,7 @@ void choicPlayground()
         printf("\n");
         j = 0;
     }
+    printf("\n");
     printf("Enter votre choice:\n");
 }
 
@@ -134,8 +123,8 @@ int resultMenu()
     {
     case 1:
     {
-
-        printf("Jouer\n");
+        system("clear");
+        printf("Mode de jeux: Normal\n");
         choicPlayground();
         break;
     }
@@ -148,17 +137,19 @@ int resultMenu()
     case 3:
     {
         printf("Quitter");
+        exit(0);
         break;
     }
     default:
         printf("Nombre incorrect\n");
+        menu();
     }
     return c;
 }
 Map *getMap(int i)
 {
-    Map *map1 = createMap(1, map1);
-    Map *map2 = createMap(1, map2);
+    Map *map1 = createMap(1, map1, 7, 9);
+    Map *map2 = createMap(1, map2, 10, 5);
     if (i == 1)
     {
         return map1;
@@ -178,8 +169,10 @@ int resultChoicPlayground()
     int c = number;
     switch (c)
     {
+    system("clear");
     case 1:
     {
+       
         printf("Vous Avez choisie MAP1\n");
         getMap(c);
         Play(c);
@@ -187,7 +180,8 @@ int resultChoicPlayground()
     }
     case 2:
     {
-        printf("Vous Avez choisie MAP2");
+        
+        printf("Vous Avez choisie MAP2\n");
         getMap(c);
         Play(c);
         break;
@@ -226,11 +220,11 @@ void Play(int g)
 
     printf("Enter your move : ");
     scanf("%c", &scan);
-    printf("\n");
-
+    printf("\n\n");
+    
     while (scan != 'f')
     {
-
+        
         if(scan == Move->right && map1[player1->Player1PosX][player1->Player1PosY + 1] != 'm' && map1[player1->Player1PosX][player1->Player1PosY + 1] != 'x')
         {
             map1[player1->Player1PosX][player1->Player1PosY] = '-';
@@ -291,8 +285,9 @@ void Play(int g)
             j = 0;
         }
 
-        printf("Enter your move : ");
+        printf("Enter your move : \n");
         scanf("%c", &scan);
+        system("clear");
     }
 }
 
