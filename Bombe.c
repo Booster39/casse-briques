@@ -1,12 +1,4 @@
-#include Game.h
-
-
-typedef struct Map;
-typedef struct Move Move;
-typedef struct Bomb Bomb;
-typedef struct Player Player;
-
-
+#include "Game.h"
 
 
 int timeDown()
@@ -103,7 +95,7 @@ void putBomb(Map *map, int x, int y, Player *player, Bomb *bomb)
     if (map->map[x][y] == '-')
     {
         map->map[x][y] = 'B';
-        player->nbBomb--;
+        player->nbrBombe--;
         bomb->x = x;
         bomb->y = y;
         checkExplode(map, bomb);

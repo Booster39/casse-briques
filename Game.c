@@ -1,38 +1,5 @@
 #include "Game.h"
 
-typedef struct Map
-{
-    /* data */
-    int nbBomb;
-    char **map;
-    int x;
-    int y;
-
-} Map;
-typedef struct Move
-{
-    char right;
-    char left;
-    char up;
-    char down;
-} Move;
-
-typedef struct
-{
-    int range;
-    int x;
-    int y;
-} Bomb;
-
-typedef struct Player
-{
-    int nbrBombe;
-    int vie;
-    int Player1PosX;
-    int Player1PosY;
-    Bomb *bomb;
-} Player;
-
 Map *createMap(int nbrbomb, char *map, int x, int y)
 {
     Map *Playground = malloc(sizeof(Map));
@@ -75,15 +42,15 @@ Player *createPlayer(int nbrBombe1, int vie1, int x1, int y1, Bomb *bomb1)
 // menu //
 void menu()
 {
-    printf("Menu\n\n");
-    printf("[1] Jouer\n");
-    printf("[2] Jouer avec un amis\n");
-    printf("[3] Quitter\n");
-    printf("Enter your choice:\n");
+    printf("Menu :\n\n");
+    printf("[1] Play alone :\n");
+    printf("[2] Play with a friend :\n");
+    printf("[3] Quit : \n\n");
+    printf("Enter your choice :\n\n");
 }
 void choicPlayground()
 {
-    printf("\n\nChoisirez votre terrain de jeux\n\n");
+    printf("\n\nChoose your PlayGround :\n\n");
     int i=0;
     int j=0;
     printf("    Map 1 \n");
@@ -111,7 +78,7 @@ void choicPlayground()
         j = 0;
     }
     printf("\n");
-    printf("Enter votre choice:\n");
+    printf("Enter your choice : 1 or 2 \n\n");
 }
 
 int resultMenu()
@@ -124,24 +91,24 @@ int resultMenu()
     case 1:
     {
         system("clear");
-        printf("Mode de jeux: Normal\n");
+        printf("Game Mode : Normal\n");
         choicPlayground();
         break;
     }
     case 2:
     {
-        printf("Jouer avec un ami");
+        printf("Play with a friend : ");
         choicPlayground();
         break;
     }
     case 3:
     {
-        printf("Quitter");
+        printf("Quit : ");
         exit(0);
         break;
     }
     default:
-        printf("Nombre incorrect\n");
+        printf("Incorrect Number : \n");
         menu();
     }
     return c;
@@ -165,6 +132,7 @@ Map *getMap(int i)
 int resultChoicPlayground()
 {
     int number;
+    printf("Map à choisir : ");
     scanf("%d", &number);
     int c = number;
     switch (c)
@@ -173,7 +141,7 @@ int resultChoicPlayground()
     case 1:
     {
        
-        printf("Vous Avez choisie MAP1\n");
+        printf("You choosed MAP1 %d:\n", c);
         getMap(c);
         Play(c);
         break;
@@ -181,13 +149,13 @@ int resultChoicPlayground()
     case 2:
     {
         
-        printf("Vous Avez choisie MAP2\n");
+        printf("You choosed MAP2 %d:\n", c);
         getMap(c);
         Play(c);
         break;
     }
     default:
-        printf("Nombre incorrect\n");
+        printf("Incorrect number :\n");
     }
     return c;
 }
@@ -212,19 +180,20 @@ void Play(int g)
 {
     Move *Move = createMove('d', 'q', 'z', 's');
     Player *player1 = createPlayer(1, 3, 3, 1, createBomb(1, 3, 1));
-    Player *player2 = getPlayer2(g);
+    Player *player2 = createPlayer(1, 3, 3, 1, createBomb(1, 3, 1));
 
     int i = 0;
     int j = 0;
     char scan;
 
-    printf("Enter your move : ");
+    printf("\nEnter your move : ");
     scanf("%c", &scan);
     printf("\n\n");
     
     while (scan != 'f')
     {
-        
+        if (g == 1)
+        {
         if(scan == Move->right && map1[player1->Player1PosX][player1->Player1PosY + 1] != 'm' && map1[player1->Player1PosX][player1->Player1PosY + 1] != 'x')
         {
             map1[player1->Player1PosX][player1->Player1PosY] = '-';
@@ -274,18 +243,83 @@ void Play(int g)
             player1->Player1PosX == 4;
             map1[player1->Player1PosX][player1->Player1PosY] = 'p';
         }
+        }
+
+        if (g == 2)
+        {
+            if(scan == Move->right && map2[player1->Player1PosX][player1->Player1PosY + 1] != 'm' && map2[player1->Player1PosX][player1->Player1PosY + 1] != 'x')
+        {
+            map2[player1->Player1PosX][player1->Player1PosY] = '-';
+            player1->Player1PosY++;
+            map2[player1->Player1PosX][player1->Player1PosY] = 'p';
+        }
+
+        if (scan == Move->left && map2[player1->Player1PosX][player1->Player1PosY - 1] != 'm' && map2[player1->Player1PosX][player1->Player1PosY - 1] != 'x')
+        {
+            map2[player1->Player1PosX][player1->Player1PosY] = '-';
+            player1->Player1PosY--;
+            map2[player1->Player1PosX][player1->Player1PosY] = 'p';
+        }
+
+        if (scan == Move->left && player1->Player1PosX == 4 && player1->Player1PosY == 1)
+        {
+            map2[player1->Player1PosX][player1->Player1PosY] = '-';
+            player1->Player1PosY--;
+            map2[player1->Player1PosX][player1->Player1PosY] = 'p';
+        }
+        if (scan == Move->up && map2[player1->Player1PosX - 1][player1->Player1PosY] != 'm' && map2[player1->Player1PosX - 1][player1->Player1PosY] != 'x')
+        {
+            map2[player1->Player1PosX][player1->Player1PosY] = '-';
+            player1->Player1PosX--;
+            map2[player1->Player1PosX][player1->Player1PosY] = 'p';
+        }
+
+        if (scan == Move->down && map2[player1->Player1PosX + 1][player1->Player1PosY] != 'm' && map2[player1->Player1PosX + 1][player1->Player1PosY] != 'x')
+        {
+            map2[player1->Player1PosX][player1->Player1PosY] = '-';
+            player1->Player1PosX++;
+            map2[player1->Player1PosX][player1->Player1PosY] = 'p';
+        }
+
+        else if (scan == Move->left && player1->Player1PosX == 4 && player1->Player1PosY == 0)
+        {
+            map2[player1->Player1PosX][player1->Player1PosY] = '-';
+            player1->Player1PosY = 8;
+            player1->Player1PosX == 4;
+            map2[player1->Player1PosX][player1->Player1PosY] = 'p';
+        }
+
+        else if (scan == Move->right && player1->Player1PosX == 4 && player1->Player1PosY == 8)
+        {
+            map2[player1->Player1PosX][player1->Player1PosY] = '-';
+            player1->Player1PosY = 0;
+            player1->Player1PosX == 4;
+            map2[player1->Player1PosX][player1->Player1PosY] = 'p';
+        }
+        }
 
         for (i = 2; i < 7; i++)
         {
             for (j = 0; j < 9; j++)
             {
+                if (g == 1)
                 printf("%c ", map1[i][j]);
+                
             }
             printf("\n");
             j = 0;
         }
-
-        printf("Enter your move : \n");
+        for (i = 2; i < 10; i++)
+        {
+            for (j = 0; j < 5; j++)
+            {
+                if (g == 2)
+                printf("%c ", map2[i][j]);
+            }
+            printf("\n");
+            j = 0;
+        }
+        printf("\nEnter your move : \n");
         scanf("%c", &scan);
         system("clear");
     }

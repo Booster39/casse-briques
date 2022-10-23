@@ -5,13 +5,44 @@
 
 //Structures
 
-typedef struct Player;
-typedef struct Bomb;
-typedef struct Move;
-typedef struct Map;
+typedef struct Map
+{
+    /* data */
+int dos;
+int map2x;
+int map1y;
+int map2y;
+    int nbBomb;
+    char **map;
+    int x;
+    int y;
 
-// Tableaux
+} Map;
+typedef struct Move
+{
+    char right;
+    char left;
+    char up;
+    char down;
+} Move;
 
+typedef struct
+{
+    int range;
+    int x;
+    int y;
+} Bomb;
+
+typedef struct Player
+{
+    int nbrBombe;
+    int vie;
+    int Player1PosX;
+    int Player1PosY;
+    Bomb *bomb;
+} Player;
+
+// Int
 char map1[7][9] = {
     {'2'},
     {'9', ' ', '5'},
