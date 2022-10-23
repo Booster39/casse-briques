@@ -7,12 +7,6 @@
 
 typedef struct Map
 {
-    /* data */
-int dos;
-int map2x;
-int map1y;
-int map2y;
-    int nbBomb;
     char **map;
     int x;
     int y;
@@ -24,6 +18,8 @@ typedef struct Move
     char left;
     char up;
     char down;
+    char bomb;
+    char next;
 } Move;
 
 typedef struct
@@ -70,7 +66,7 @@ char map2[10][5] = {
 void menu();
 int resultMenu();
 int resultChoicPlayground();
-
+void putBomb(Map *map, int x, int y, Player *player, Player *bomb);
 void Play(int i);
 
 #endif

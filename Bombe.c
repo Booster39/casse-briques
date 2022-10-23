@@ -1,9 +1,4 @@
 #include "Game.h"
-<<<<<<< HEAD
-
-=======
->>>>>>> refs/remotes/origin/main
-
 
 int timeDown()
 {
@@ -24,8 +19,12 @@ void checkExplode(Map *map, Bomb *bomb)
        {
            if (map->map[i][j] == 'B')
            {
-                timeDown();
-                explode(map, bomb, i, j);
+                if (timeDown() == 0)
+                {   
+                    map->map[i][j] = '-';
+                    explode(map, bomb, i, j);
+                }
+                
            }
        }
     }
@@ -39,24 +38,16 @@ void explode(Map *map, Bomb *bomb, int x, int y)
     {
         if (map->map[x][y + i] == 'm')
             map->map[x][y + i] = '-';
-        if (map->map[x][y + i] == 'x')
-            map->map[x][y + i] = 'x';
-            break;
         if (map->map[x][y + i] == 'p')
             map->map[x][y + i] = '0';
         if (map->map[x][y + i] == 'g')
             map->map[x][y + i] = '0';
-        if (map->map[x][y + i] == '-')
-            map->map[x][y + i] = '-';
     }
     // verif gauche 
     for (int i = 0; i < bomb->range; i++)
     {
         if (map->map[x][y - i] == 'm')
             map->map[x][y - i] = '-';
-        if (map->map[x][y - i] == 'x')
-            map->map[x][y - i] = 'x';
-            break;
         if (map->map[x][y - i] == 'p')
             map->map[x][y - i] = '0';
         if (map->map[x][y - i] == 'g')
@@ -68,23 +59,16 @@ void explode(Map *map, Bomb *bomb, int x, int y)
     {
         if (map->map[x + i][y] == 'm')
             map->map[x + i][y] = '-';
-        if (map->map[x + i][y] == 'x')
-            map->map[x + i][y] = 'x';
-            break;
+
         if (map->map[x + i][y] == 'p')
             map->map[x + i][y] = '0';
         if (map->map[x + i][y] == 'g')
             map->map[x + i][y] = '0';
-        if (map->map[x + i][y] == '-')
-            map->map[x + i][y] = '-';
     }
     for(int i = 0; i < bomb->range; i++)
     {
         if (map->map[x - i][y] == 'm')
             map->map[x - i][y] = '-';
-        if (map->map[x - i][y] == 'x')
-            map->map[x - i][y] = 'x';
-        break;
         if (map->map[x - i][y] == 'p')
             map->map[x - i][y] = '0';
         if (map->map[x - i][y] == 'g')
@@ -94,19 +78,20 @@ void explode(Map *map, Bomb *bomb, int x, int y)
     }
 }
 
-void putBomb(Map *map, int x, int y, Player *player, Bomb *bomb)
+void putBomb(Map *map, int x, int y, Player *player, Player *bomb)
 {
-    if (map->map[x][y] == '-')
-    {
         map->map[x][y] = 'B';
         player->nbrBombe--;
-        bomb->x = x;
-        bomb->y = y;
+        player->bomb->x = x;
+        player->bomb->y = y;
         checkExplode(map, bomb);
-    }
 }
+
 int checkWin(Map *map, Player *player)
 {
+    // si -5 == 0winner
+    // si -2 == G gagne 
+    // si -1 == P gagne
     int compteur = 0;
     for (int i = 0; i < map->y; i++)
     {
