@@ -11,7 +11,7 @@ int timeDown()
     return 0;
 } 
 
-void checkExplode(Map *map, Bomb *bomb)
+void checkExplode(Map *map, Player *player)
 {
     for (int i = 0; i < map->y; i++)
     {
@@ -22,7 +22,7 @@ void checkExplode(Map *map, Bomb *bomb)
                 if (timeDown() == 0)
                 {   
                     map->map[i][j] = '-';
-                    explode(map, bomb, i, j);
+                    explode(map, player, i, j);
                 }
                 
            }
@@ -31,10 +31,10 @@ void checkExplode(Map *map, Bomb *bomb)
 }
 
 
-void explode(Map *map, Bomb *bomb, int x, int y)
+void explode(Map *map, Player *player, int x, int y)
 {
     //verif droit
-    for (int i = 0; i < bomb->range; i++)
+    for (int i = 0; i < player->bomb->range; i++)
     {
         if (map->map[x][y + i] == 'm')
             map->map[x][y + i] = '-';
@@ -43,8 +43,8 @@ void explode(Map *map, Bomb *bomb, int x, int y)
         if (map->map[x][y + i] == 'g')
             map->map[x][y + i] = '0';
     }
-    // verif gauche 
-    for (int i = 0; i < bomb->range; i++)
+    // verif gauche
+    for (int i = 0; i < player->bomb->range; i++)
     {
         if (map->map[x][y - i] == 'm')
             map->map[x][y - i] = '-';
@@ -55,7 +55,7 @@ void explode(Map *map, Bomb *bomb, int x, int y)
         if (map->map[x][y - i] == '-')
             map->map[x][y - i] = '-';
     }
-    for (int i = 0; i < bomb->range; i++)
+    for (int i = 0; i < player->bomb->range; i++)
     {
         if (map->map[x + i][y] == 'm')
             map->map[x + i][y] = '-';
@@ -65,7 +65,7 @@ void explode(Map *map, Bomb *bomb, int x, int y)
         if (map->map[x + i][y] == 'g')
             map->map[x + i][y] = '0';
     }
-    for(int i = 0; i < bomb->range; i++)
+    for (int i = 0; i < player->bomb->range; i++)
     {
         if (map->map[x - i][y] == 'm')
             map->map[x - i][y] = '-';
@@ -78,13 +78,13 @@ void explode(Map *map, Bomb *bomb, int x, int y)
     }
 }
 
-void putBomb(Map *map, int x, int y, Player *player, Player *bomb)
+void putBomb(Map *map, int x, int y, Player *player)
 {
         map->map[x][y] = 'B';
         player->nbrBombe--;
         player->bomb->x = x;
         player->bomb->y = y;
-        checkExplode(map, bomb);
+        checkExplode(map, player);
 }
 
 int checkWin(Map *map, Player *player)
