@@ -1,4 +1,8 @@
 #include "Game.h"
+<<<<<<< HEAD
+
+=======
+>>>>>>> refs/remotes/origin/main
 
 
 int timeDown()
