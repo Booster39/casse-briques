@@ -66,7 +66,7 @@ char map2[10][5] = {
 void menu();
 int resultMenu();
 int resultChoicPlayground();
-void putBomb(Map *map, int x, int y, Player *player, Player *bomb);
+void putBomb(Map *map, int x, int y, Player *player);
 void Play(int i);
 
 #endif
