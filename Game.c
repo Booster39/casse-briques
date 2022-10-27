@@ -1,6 +1,6 @@
 #include "Game.h"
 
-Map *createMap(int nbrbomb, char *map, int x, int y)
+Map *createMap(int nbrbomb, char **map, int x, int y)
 {
     Map *Playground = malloc(sizeof(Map));
     Playground->map = map;
@@ -194,17 +194,12 @@ void Play(int g)
         if (g == 1)
         {
 
-        if (scan == 'b' && map1[player1->Player1PosX][player1->Player1PosY] != 'x' && map1[player1->Player1PosX][player1->Player1PosY] == 'p')
-        {
+        if (scan == 'b' && map1[player1->Player1PosX][player1->Player1PosY] == 'p' || map1[player1->Player1PosX][player1->Player1PosY] == 'g')
             map1[player1->Player1PosX][player1->Player1PosY] = '*';
-        }
-        if (scan == 'b' && map1[player1->Player1PosX][player1->Player1PosY] != 'x' && map1[player1->Player1PosX][player1->Player1PosY] == 'g')
-        {
-            map1[player1->Player1PosX][player1->Player1PosY] = '#';
-        }
+
         if(scan == Move->right && map1[player1->Player1PosX][player1->Player1PosY + 1] != 'm' && map1[player1->Player1PosX][player1->Player1PosY + 1] != 'x')
         {
-            if (map2[player1->Player1PosX][player1->Player1PosY] != '*' || map2[player1->Player1PosX][player1->Player1PosY] != '#')
+            if (map1[player1->Player1PosX][player1->Player1PosY] != '*')
                 map1[player1->Player1PosX][player1->Player1PosY] = '-';
             player1->Player1PosY++;
             map1[player1->Player1PosX][player1->Player1PosY] = 'p';
@@ -212,22 +207,22 @@ void Play(int g)
 
         if (scan == Move->left && map1[player1->Player1PosX][player1->Player1PosY - 1] != 'm' && map1[player1->Player1PosX][player1->Player1PosY - 1] != 'x')
         {
-            if (map2[player1->Player1PosX][player1->Player1PosY] != '*' || map2[player1->Player1PosX][player1->Player1PosY] != '#')
+            if (map1[player1->Player1PosX][player1->Player1PosY] != '*')
                 map1[player1->Player1PosX][player1->Player1PosY] = '-';
             player1->Player1PosY--;
             map1[player1->Player1PosX][player1->Player1PosY] = 'p';
         }
 
-        if (scan == Move->left && player1->Player1PosX == 4 && player1->Player1PosY == 1)
-        {
-            if (map2[player1->Player1PosX][player1->Player1PosY] != '*' || map2[player1->Player1PosX][player1->Player1PosY] != '#')
-                map1[player1->Player1PosX][player1->Player1PosY] = '-';
-            player1->Player1PosY--;
-            map1[player1->Player1PosX][player1->Player1PosY] = 'p';
-        }
+        //if (scan == Move->left && player1->Player1PosX == 4 && player1->Player1PosY == 1)
+        //{
+        //    if (map2[player1->Player1PosX][player1->Player1PosY] != '*' || map2[player1->Player1PosX][player1->Player1PosY] != '#')
+        //        map1[player1->Player1PosX][player1->Player1PosY] = '-';
+        //    player1->Player1PosY--;
+        //    map1[player1->Player1PosX][player1->Player1PosY] = 'p';
+        //}
         if (scan == Move->up && map1[player1->Player1PosX - 1][player1->Player1PosY] != 'm' && map1[player1->Player1PosX - 1][player1->Player1PosY] != 'x')
         {
-            if (map2[player1->Player1PosX][player1->Player1PosY] != '*' || map2[player1->Player1PosX][player1->Player1PosY] != '#')
+            if (map1[player1->Player1PosX][player1->Player1PosY] != '*')
                 map1[player1->Player1PosX][player1->Player1PosY] = '-';
             player1->Player1PosX--;
             map1[player1->Player1PosX][player1->Player1PosY] = 'p';
@@ -235,27 +230,26 @@ void Play(int g)
 
         if (scan == Move->down && map1[player1->Player1PosX + 1][player1->Player1PosY] != 'm' && map1[player1->Player1PosX + 1][player1->Player1PosY] != 'x')
         {
-            if (map2[player1->Player1PosX][player1->Player1PosY] != '*' || map2[player1->Player1PosX][player1->Player1PosY] != '#')
-                map1[player1->Player1PosX][player1->Player1PosY] = '-';
+            if (map1[player1->Player1PosX][player1->Player1PosY] != '*')
             player1->Player1PosX++;
             map1[player1->Player1PosX][player1->Player1PosY] = 'p';
         }
-        if (scan == Move->left && player1->Player1PosX == 4 && player1->Player1PosY == 0)
-        {
-            if (map2[player1->Player1PosX][player1->Player1PosY] != '*' || map2[player1->Player1PosX][player1->Player1PosY] != '#')
-                map1[player1->Player1PosX][player1->Player1PosY] = '-';
-            player1->Player1PosY = 8;
-            player1->Player1PosX == 4;
-            map1[player1->Player1PosX][player1->Player1PosY] = 'p';
-        }
-        if (scan == Move->right && player1->Player1PosX == 4 && player1->Player1PosY == 8)
-        {
-            if (map2[player1->Player1PosX][player1->Player1PosY] != '*' || map2[player1->Player1PosX][player1->Player1PosY] != '#')
-                map1[player1->Player1PosX][player1->Player1PosY] = '-';
-            player1->Player1PosY = 0;
-            player1->Player1PosX == 4;
-            map1[player1->Player1PosX][player1->Player1PosY] = 'p';
-        }
+       // if (scan == Move->left && player1->Player1PosX == 4 && player1->Player1PosY == 0)
+       // {
+       //     if (map2[player1->Player1PosX][player1->Player1PosY] != '*' || map2[player1->Player1PosX][player1->Player1PosY] != '#')
+       //         map1[player1->Player1PosX][player1->Player1PosY] = '-';
+       //     player1->Player1PosY = 8;
+       //     player1->Player1PosX == 4;
+       //     map1[player1->Player1PosX][player1->Player1PosY] = 'p';
+       // }
+       // if (scan == Move->right && player1->Player1PosX == 4 && player1->Player1PosY == 8)
+       // {
+       //     if (map2[player1->Player1PosX][player1->Player1PosY] != '*' || map2[player1->Player1PosX][player1->Player1PosY] != '#')
+       //         map1[player1->Player1PosX][player1->Player1PosY] = '-';
+       //     player1->Player1PosY = 0;
+       //     player1->Player1PosX == 4;
+       //     map1[player1->Player1PosX][player1->Player1PosY] = 'p';
+       // }
         }
 
         if (g == 2)
@@ -270,7 +264,7 @@ void Play(int g)
         }
             if(scan == Move->right && map2[player1->Player1PosX][player1->Player1PosY + 1] != 'm' && map2[player1->Player1PosX][player1->Player1PosY + 1] != 'x')
         {
-            if (map2[player1->Player1PosX][player1->Player1PosY] != '*' || map2[player1->Player1PosX][player1->Player1PosY] != '#')
+            if (map2[player1->Player1PosX][player1->Player1PosY] != '*' && map2[player1->Player1PosX][player1->Player1PosY] != '#')
                 map2[player1->Player1PosX][player1->Player1PosY] = '-';
             player1->Player1PosY++;
             map2[player1->Player1PosX][player1->Player1PosY] = 'p';
@@ -278,22 +272,22 @@ void Play(int g)
 
         if (scan == Move->left && map2[player1->Player1PosX][player1->Player1PosY - 1] != 'm' && map2[player1->Player1PosX][player1->Player1PosY - 1] != 'x')
         {
-            if (map2[player1->Player1PosX][player1->Player1PosY] != '*' || map2[player1->Player1PosX][player1->Player1PosY] != '#')
+            if (map2[player1->Player1PosX][player1->Player1PosY] != '*' && map2[player1->Player1PosX][player1->Player1PosY] != '#')
                 map2[player1->Player1PosX][player1->Player1PosY] = '-';
             player1->Player1PosY--;
             map2[player1->Player1PosX][player1->Player1PosY] = 'p';
         }
 
-        if (scan == Move->left && player1->Player1PosX == 4 && player1->Player1PosY == 1)
-        {   
-            if (map2[player1->Player1PosX][player1->Player1PosY] != '*' || map2[player1->Player1PosX][player1->Player1PosY] != '#')
-                map2[player1->Player1PosX][player1->Player1PosY] = '-';
-            player1->Player1PosY--;
-            map2[player1->Player1PosX][player1->Player1PosY] = 'p';
-        }
+       // if (scan == Move->left && player1->Player1PosX == 4 && player1->Player1PosY == 1)
+       // {   
+       //     if (map2[player1->Player1PosX][player1->Player1PosY] != '*' || map2[player1->Player1PosX][player1->Player1PosY] != '#')
+       //         map2[player1->Player1PosX][player1->Player1PosY] = '-';
+       //     player1->Player1PosY--;
+       //     map2[player1->Player1PosX][player1->Player1PosY] = 'p';
+       // }
         if (scan == Move->up && map2[player1->Player1PosX - 1][player1->Player1PosY] != 'm' && map2[player1->Player1PosX - 1][player1->Player1PosY] != 'x')
         {
-            if (map2[player1->Player1PosX][player1->Player1PosY] != '*' || map2[player1->Player1PosX][player1->Player1PosY] != '#')
+            if (map2[player1->Player1PosX][player1->Player1PosY] != '*' && map2[player1->Player1PosX][player1->Player1PosY] != '#')
                 map2[player1->Player1PosX][player1->Player1PosY] = '-';
             player1->Player1PosX--;
             map2[player1->Player1PosX][player1->Player1PosY] = 'p';
@@ -301,29 +295,29 @@ void Play(int g)
 
         if (scan == Move->down && map2[player1->Player1PosX + 1][player1->Player1PosY] != 'm' && map2[player1->Player1PosX + 1][player1->Player1PosY] != 'x')
         {
-            if (map2[player1->Player1PosX][player1->Player1PosY] != '*' || map2[player1->Player1PosX][player1->Player1PosY] != '#')
+            if (map2[player1->Player1PosX][player1->Player1PosY] != '*' && map2[player1->Player1PosX][player1->Player1PosY] != '#')
                 map2[player1->Player1PosX][player1->Player1PosY] = '-';
             player1->Player1PosX++;
             map2[player1->Player1PosX][player1->Player1PosY] = 'p';
         }
 
-        if (scan == Move->left && player1->Player1PosX == 4 && player1->Player1PosY == 0)
-        {
-            if (map2[player1->Player1PosX][player1->Player1PosY] != '*' || map2[player1->Player1PosX][player1->Player1PosY] != '#')
-                map2[player1->Player1PosX][player1->Player1PosY] = '-';
-            player1->Player1PosY = 8;
-            player1->Player1PosX == 4;
-            map2[player1->Player1PosX][player1->Player1PosY] = 'p';
-        }
-
-        if (scan == Move->right && player1->Player1PosX == 4 && player1->Player1PosY == 8)
-        {
-            if (map2[player1->Player1PosX][player1->Player1PosY] != '*' || map2[player1->Player1PosX][player1->Player1PosY] != '#')
-                map2[player1->Player1PosX][player1->Player1PosY] = '-';
-            player1->Player1PosY = 0;
-            player1->Player1PosX == 4;
-            map2[player1->Player1PosX][player1->Player1PosY] = 'p';
-        }
+        //if (scan == Move->left && player1->Player1PosX == 4 && player1->Player1PosY == 0)
+        //{
+        //    if (map2[player1->Player1PosX][player1->Player1PosY] != '*' || map2[player1->Player1PosX][player1->Player1PosY] != '#')
+        //        map2[player1->Player1PosX][player1->Player1PosY] = '-';
+        //    player1->Player1PosY = 8;
+        //    player1->Player1PosX == 4;
+        //    map2[player1->Player1PosX][player1->Player1PosY] = 'p';
+        //}
+//
+        //if (scan == Move->right && player1->Player1PosX == 4 && player1->Player1PosY == 8)
+        //{
+        //    if (map2[player1->Player1PosX][player1->Player1PosY] != '*' || map2[player1->Player1PosX][player1->Player1PosY] != '#')
+        //        map2[player1->Player1PosX][player1->Player1PosY] = '-';
+        //    player1->Player1PosY = 0;
+        //    player1->Player1PosX == 4;
+        //    map2[player1->Player1PosX][player1->Player1PosY] = 'p';
+        //}
         }
 
         for (i = 2; i < 7; i++)

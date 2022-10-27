@@ -17,12 +17,17 @@ void checkExplode(Map *map, Player *player)
     {
        for (int j = 0; j < map->x; j++)
        {
-           if (map->map[i][j] == 'B')
+           if (map->map[i][j] == '*')
            {
-                if (timeDown() == 0)
-                {   
+            int k = 0;
+                while (timeDown() != 0)
+                {
+                    k++;
+                }
+                if (k == 5) { 
+                     
                     map->map[i][j] = '-';
-                    explode(map, player, i, j);
+                    explode(player, i, j);
                 }
                 
            }
@@ -42,6 +47,8 @@ void explode(Map *map, Player *player, int x, int y)
             map->map[x][y + i] = '0';
         if (map->map[x][y + i] == 'g')
             map->map[x][y + i] = '0';
+    else
+        break;
     }
     // verif gauche
     for (int i = 0; i < player->bomb->range; i++)
@@ -54,6 +61,8 @@ void explode(Map *map, Player *player, int x, int y)
             map->map[x][y - i] = '0';
         if (map->map[x][y - i] == '-')
             map->map[x][y - i] = '-';
+        else
+            break;
     }
     for (int i = 0; i < player->bomb->range; i++)
     {
@@ -64,6 +73,8 @@ void explode(Map *map, Player *player, int x, int y)
             map->map[x + i][y] = '0';
         if (map->map[x + i][y] == 'g')
             map->map[x + i][y] = '0';
+        else
+            break;
     }
     for (int i = 0; i < player->bomb->range; i++)
     {
