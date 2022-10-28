@@ -62,7 +62,7 @@ int RangeYelow( Player *player)
     player->bomb->range++;
     return 0;
 }
-int RangeBleu( Player *player)
+int RangeBlue( Player *player)
 {
     if(player->bomb->range > 0)
     {
@@ -70,8 +70,13 @@ int RangeBleu( Player *player)
     }
     return 0;
 }
+int rangeRed( Player *player)
+{
+    player->bomb->range = 7;
+    return 0;
+}
 int invincibility( Player *player)
 {
-    player->invincible = 1;
+    player->invincibility = 1;
     return 0;
 }
