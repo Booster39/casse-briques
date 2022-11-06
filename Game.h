@@ -45,7 +45,7 @@ char map1[7][9] = {
     {'x', 'x', 'x', 'x', 'x', 'x', 'x', 'x', 'x'},
     {'x', 'p', '-', 'm', 'm', 'm', 'x', 'm', 'x'},
     {'-', '-', 'm', 'm', 'm', 'm', 'm', '-', '-'},
-    {'x', 'm', 'x', 'm', 'm', 'm', '-', 'g', 'x'},
+    {'x', 'm', '-', 'g', '-', '-', '-', '-', 'x'},
     {'x', 'x', 'x', 'x', 'x', 'x', 'x', 'x', 'x'}};
 // 4 - 0 // 4 - 8
 
@@ -55,8 +55,8 @@ char map2[10][5] = {
     {'x', 'x', 'x', 'x', 'x'},
     {'x', 'p', '-', 'm', 'x'},
     {'x', 'm', 'x', 'm', 'x'},
-    {'-', '-', 'm', '-', '-'},
-    {'-', '-', 'x', 'm', '-'},
+    {'-', '-', 'm', 'g', '-'},
+    {'-', '-', 'x', '-', '-'},
     {'x', 'm', 'x', 'm', 'x'},
     {'x', 'm', 'x', 'm', 'x'},
     {'x', 'x', 'x', 'x', 'x'}};
@@ -65,8 +65,8 @@ char map2[10][5] = {
 
 void menu();
 int resultMenu();
-int resultChoicPlayground();
+int resultChoicPlayground(int withFriend);
 void putBomb(Map *map, int x, int y, Player *player);
-void Play(int i);
+void Play(int i, int withFriend);
 
 #endif

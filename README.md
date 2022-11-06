@@ -25,3 +25,14 @@ Casse Briques est un jeu dans lequel un joueur doit vaincre les autres en les é
 -> Votre joueur (1) est représenté par un p, le joueur (2) par g. Quand un joueur posera une bombe, le signe * apparaîtra, et explosera sous peu.
 
 -> Amusez-vous bien !
+
+
+
+# TO DO
+
+1) Explosion de la bombe -> brique off --> Abdoulaye
+2) Apparition aléatoire des bonus --> Nassim
+3) Créer les bonus
+4) 2 joueurs -> Mise
+
+4) Partie Réseau

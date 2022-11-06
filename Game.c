@@ -128,7 +128,7 @@ Map *getMap(int i)
     return NULL;
 }
 
-int resultChoicPlayground()
+int resultChoicPlayground(int withFriend)
 {
     int number;
     printf("Map à choisir : ");
@@ -142,7 +142,7 @@ int resultChoicPlayground()
        
         printf("You choosed MAP1 %d:\n", c);
         getMap(c);
-        Play(c);
+        Play(c, withFriend);
         break;
     }
     case 2:
@@ -150,7 +150,7 @@ int resultChoicPlayground()
         
         printf("You choosed MAP2 %d:\n", c);
         getMap(c);
-        Play(c);
+        Play(c, withFriend);
         break;
     }
     default:
@@ -175,7 +175,7 @@ Player *getPlayer2(int i)
 
     return NULL;
 }
-void Play(int g)
+void Play(int g, int withFriend)
 {
     Move *Move = createMove('d', 'q', 'z', 's');
     Player *player1 = createPlayer(1, 3, 3, 1, createBomb(1, 3, 1));
@@ -184,6 +184,12 @@ void Play(int g)
     int i = 0;
     int j = 0;
     char scan;
+
+    if (withFriend == 1)
+    {
+        map1[5][3] = '-';
+        map2[5][3] = '-';
+    }
 
     printf("\nEnter your move : ");
     scanf("%c", &scan);
@@ -330,7 +336,15 @@ void Play(int g)
         }
         printf("\nEnter your move : \n");
         scanf("%c", &scan);
-if (player1->Player1PosX == 4 && player1->Player1PosY == 0 && scan == Move->left)
+
+    if (player1->Player1PosX == 4 && player1->Player1PosY == 8 && scan == Move->right)
+        {
+            map1[4][8] = '-';
+            player1->Player1PosY = 0;
+            player1->Player1PosX = 4;
+            map1[player1->Player1PosX][player1->Player1PosY] = 'p';
+    }
+    if (player1->Player1PosX == 4 && player1->Player1PosY == 0 && scan == Move->left)
         {
             
             map1[player1->Player1PosX][player1->Player1PosY] = '-';
@@ -339,13 +353,6 @@ if (player1->Player1PosX == 4 && player1->Player1PosY == 0 && scan == Move->left
             map1[player1->Player1PosX][player1->Player1PosY] = 'p';
 
         }
-    if (scan == Move->right && player1->Player1PosX == 4 && player1->Player1PosY == 8)
-        {
-            map1[player1->Player1PosX][player1->Player1PosY] = '-';
-            player1->Player1PosY = 0;
-            player1->Player1PosX = 5;
-            map1[player1->Player1PosX][player1->Player1PosY] = 'p';
-    }
         system("clear");
     }
 }
@@ -354,10 +361,10 @@ int main(int argc, char const *argv[])
 {
     
     menu();
-    resultMenu();
-    resultChoicPlayground();
-    int i = resultChoicPlayground();
+    int withFriend = resultMenu();
+    resultChoicPlayground(withFriend);
+    int i = resultChoicPlayground(withFriend);
     Map *map = getMap(i);
-    Play(i);
+    Play(i, withFriend);
     return 0;
 }
