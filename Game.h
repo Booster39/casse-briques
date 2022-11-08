@@ -33,8 +33,10 @@ typedef struct Player
 {
     int nbrBombe;
     int vie;
-    int Player1PosX;
-    int Player1PosY;
+    int player1PosX;
+    int player1PosY;
+    int player2PosX;
+    int player2PosY;
     Bomb *bomb;
 } Player;
 
