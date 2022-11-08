@@ -4,14 +4,6 @@
     #include <stdlib.h>
 
 //Structures
-
-typedef struct Map
-{
-    char **map;
-    int x;
-    int y;
-
-} Map;
 typedef struct Move
 {
     char right;
@@ -21,6 +13,15 @@ typedef struct Move
     char bomb;
     char next;
 } Move;
+
+typedef struct Map
+{
+    char **map;
+    int x;
+    int y;
+
+} Map;
+
 
 typedef struct
 {
