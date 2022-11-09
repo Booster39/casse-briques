@@ -187,6 +187,7 @@ void playInMap1(Player *player1, char scan, Move *Move, char var, char bomb, cha
         if (scan == touch)
             map1[player1->x][player1->y] = bomb;
 
+
         if(scan == Move->right && map1[player1->x][player1->y + 1] != 'm' && map1[player1->x][player1->y + 1] != 'x')
         {
             if (map1[player1->x][player1->y] != bomb)
@@ -274,6 +275,8 @@ void Play(int map, int withFriend)
     int j = 0;
     char scan;
     int toYou = 1;
+    int countb = 0;
+    int counts = 0;
 
     if (withFriend == 1)
     {
@@ -287,6 +290,10 @@ void Play(int map, int withFriend)
 
     while (scan != 'f')
     {
+        if (scan == 'b')
+            countb = 5;
+        if (scan == 's')
+            counts = 5;
         if (withFriend == 1)
         {
             if (map == 1)
@@ -303,10 +310,11 @@ void Play(int map, int withFriend)
             }
             else if ((toYou % 2) == 1)
             {
-                playInMap1(player2, scan, Move, 'g', '#', 'b');
+                playInMap1(player2, scan, Move, 'g', '#', 's');
             }
         }
-
+        printf("\n %d Mouvements avant l'explosion de la Bombe 1 !\n", countb);
+        printf("\n %d Mouvements avant l'explosion de la Bombe 2 !\n", counts);
         if (map == 2  && withFriend == 2)
         {
             if ((toYou % 2) == 0)
@@ -315,7 +323,7 @@ void Play(int map, int withFriend)
             }
             else if ((toYou % 2) == 1)
             {
-                playInMap2(player2, scan, Move, 'g', '#', 'b');
+                playInMap2(player2, scan, Move, 'g', '#', 's');
             }
         }
 
@@ -346,17 +354,47 @@ void Play(int map, int withFriend)
         scan = getchar();
         putchar(scan);
         if (scan == 'd')
+        {
             toYou++;
+            if (countb != 0)
+                countb--;
+            if (counts != 0)
+                counts--;
+        }
         if (scan == 'z')
+        {
             toYou++;
+            if (countb != 0)
+                countb--;
+            if (counts != 0)
+                counts--;
+        }
         if (scan == 's')
+        {
             toYou++;
+            if (countb != 0)
+                countb--;
+            if (counts != 0)
+                counts--;
+        }
         if (scan == 'q')
+        {
             toYou++;
+            if (countb != 0)
+                countb--;
+            if (counts != 0)
+                counts--;
+        }
         if (scan == 'b')
+        {
             toYou++;
+            if (countb != 0)
+                countb--;
+            if (counts != 0)
+                counts--;
+        }
         random1to21();
-    
+
     if (player1->x == 4 && player1->y == 8 && scan == Move->right)
         {
             map1[4][8] = '-';
