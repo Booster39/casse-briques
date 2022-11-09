@@ -22,7 +22,7 @@ Casse Briques est un jeu dans lequel un joueur doit vaincre les autres en les é
 
 -> Après le choix de votre map, vous aurez la possibilité de déplacer votre joueur: z pour monter, s pour descendre, q pour tourner à gauche et d à droite.
 
--> Votre joueur (1) est représenté par un p, le joueur (2) par g. Quand un joueur posera une bombe, le signe * apparaîtra, et explosera sous peu.
+-> Votre joueur (1) est représenté par un p, le joueur (2) par g. Quand un joueur posera une bombe(Joueur 1 avec la touche b, le Joueur 2 avec la touche r), le signe *(Joueur 1) ou # (Joueur 2) apparaîtra, et explosera sous peu.
 
 -> Amusez-vous bien !
 
@@ -30,8 +30,7 @@ Casse Briques est un jeu dans lequel un joueur doit vaincre les autres en les é
 
 # TO DO
 
-1) Explosion de la bombe -> brique off --> Abdoulaye
-2) Apparition aléatoire des bonus --> Nassim
-3) Créer les bonus --> Yasmine
+1) Apparition aléatoire des bonus --> Nassim
+2) Créer les bonus --> Yasmine
 
 4) Partie Réseau : à voir ensemble

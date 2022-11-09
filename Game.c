@@ -206,17 +206,6 @@ void playInMap1(Player *player1, char scan, Move *Move, char var, char bomb, cha
                 map1[player1->bomb->bombX + i][player1->bomb->bombY] = '-';
             if (map1[player1->bomb->bombX - i][player1->bomb->bombY] != 'x')
                 map1[player1->bomb->bombX - i][player1->bomb->bombY] = '-';
-
-            i = 2;
-            if (map1[player1->bomb->bombX][player1->bomb->bombY + i] != 'x')
-                map1[player1->bomb->bombX][player1->bomb->bombY + i] = '-';
-            if (map1[player1->bomb->bombX][player1->bomb->bombY - i] != 'x')
-                map1[player1->bomb->bombX][player1->bomb->bombY - i] = '-';
-            if (map1[player1->bomb->bombX + i][player1->bomb->bombY] != 'x')
-                map1[player1->bomb->bombX + i][player1->bomb->bombY] = '-';
-            if (map1[player1->bomb->bombX - i][player1->bomb->bombY] != 'x')
-                map1[player1->bomb->bombX - i][player1->bomb->bombY] = '-';
-            
         }
 
         if(scan == Move->right && map1[player1->x][player1->y + 1] != 'm' && map1[player1->x][player1->y + 1] != 'x')
@@ -273,15 +262,6 @@ void playInMap2(Player *player1, char scan, Move* Move, char var, char bomb, cha
                 map2[player1->bomb->bombX + i][player1->bomb->bombY] = '-';
             if (map2[player1->bomb->bombX - i][player1->bomb->bombY] != 'x')
                 map2[player1->bomb->bombX - i][player1->bomb->bombY] = '-';
-            i = 2;
-            if (map1[player1->bomb->bombX][player1->bomb->bombY + i] != 'x')
-                map1[player1->bomb->bombX][player1->bomb->bombY + i] = '-';
-            if (map1[player1->bomb->bombX][player1->bomb->bombY - i] != 'x')
-                map1[player1->bomb->bombX][player1->bomb->bombY - i] = '-';
-            if (map1[player1->bomb->bombX + i][player1->bomb->bombY] != 'x')
-                map1[player1->bomb->bombX + i][player1->bomb->bombY] = '-';
-            if (map1[player1->bomb->bombX - i][player1->bomb->bombY] != 'x')
-                map1[player1->bomb->bombX - i][player1->bomb->bombY] = '-';
         }
             
             if(scan == Move->right && map2[player1->x][player1->y + 1] != 'm' && map2[player1->x][player1->y + 1] != 'x')
@@ -369,7 +349,7 @@ void Play(int map, int withFriend)
             }
             else if ((toYou % 2) == 1)
             {
-                playInMap1(player2, scan, Move, 'g', '#', 's', counts);
+                playInMap1(player2, scan, Move, 'g', '#', 'r', counts);
             }
         }
         printf("\n %d Mouvements avant l'explosion de la Bombe 1 !\n", countb);
@@ -382,7 +362,7 @@ void Play(int map, int withFriend)
             }
             else if ((toYou % 2) == 1)
             {
-                playInMap2(player2, scan, Move, 'g', '#', 's', counts);
+                playInMap2(player2, scan, Move, 'g', '#', 'r', counts);
             }
         }
 
