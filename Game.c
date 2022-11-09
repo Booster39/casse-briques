@@ -182,11 +182,27 @@ int movementsBeforeExplosion(int count)
     return count;
 }
 
-void playInMap1(Player *player1, char scan, Move *Move, char var, char bomb, char touch)
+void playInMap1(Player *player1, char scan, Move *Move, char var, char bomb, char touch, int count)
 {
         if (scan == touch)
+        {
             map1[player1->x][player1->y] = bomb;
+            player1->bombX = player1->x;
+            player1->bombY = player1->y;
+        }
 
+        if (count == 0 && map1[player1->bombX][player1->bombY] == bomb)
+        {
+            map1[player1->bombX][player1->bombY] = '-';
+            if (map1[player1->bombX][player1->bombY + 1] != 'x')
+                map1[player1->bombX][player1->bombY + 1] = '-';
+            if (map1[player1->bombX][player1->bombY - 1] != 'x')
+                map1[player1->bombX][player1->bombY - 1] = '-';
+            if (map1[player1->bombX + 1][player1->bombY] != 'x')
+                map1[player1->bombX + 1][player1->bombY] = '-';
+            if (map1[player1->bombX - 1][player1->bombY] != 'x')
+                map1[player1->bombX - 1][player1->bombY] = '-';
+        }
 
         if(scan == Move->right && map1[player1->x][player1->y + 1] != 'm' && map1[player1->x][player1->y + 1] != 'x')
         {
@@ -220,10 +236,27 @@ void playInMap1(Player *player1, char scan, Move *Move, char var, char bomb, cha
         }
 }
 
-void playInMap2(Player *player1, char scan, Move* Move, char var, char bomb, char touch)
+void playInMap2(Player *player1, char scan, Move* Move, char var, char bomb, char touch, int count)
 {
             if (scan == touch)
+            {
                 map2[player1->x][player1->y] = bomb;
+                player1->bombX = player1->x;
+                player1->bombY = player1->y;
+            }
+
+        if (count == 0 && map2[player1->bombX][player1->bombY] == bomb)
+        {
+            map2[player1->bombX][player1->bombY] = '-';
+            if (map2[player1->bombX][player1->bombY + 1] != 'x')
+                map2[player1->bombX][player1->bombY + 1] = '-';
+            if (map2[player1->bombX][player1->bombY - 1] != 'x')
+                map2[player1->bombX][player1->bombY - 1] = '-';
+            if (map2[player1->bombX + 1][player1->bombY] != 'x')
+                map2[player1->bombX + 1][player1->bombY] = '-';
+            if (map2[player1->bombX - 1][player1->bombY] != 'x')
+                map2[player1->bombX - 1][player1->bombY] = '-';
+        }
             
             if(scan == Move->right && map2[player1->x][player1->y + 1] != 'm' && map2[player1->x][player1->y + 1] != 'x')
         {
@@ -297,20 +330,20 @@ void Play(int map, int withFriend)
         if (withFriend == 1)
         {
             if (map == 1)
-                playInMap1(player1, scan, Move, 'p', '*', 'b');
+                playInMap1(player1, scan, Move, 'p', '*', 'b', countb);
             else
-                playInMap2(player1, scan, Move, 'p', '*', 'b');
+                playInMap2(player1, scan, Move, 'p', '*', 'b', countb);
 
         }
         if (map == 1  && withFriend == 2)
         {
             if ((toYou % 2) == 0)
             {
-                playInMap1(player1, scan, Move, 'p', '*', 'b');
+                playInMap1(player1, scan, Move, 'p', '*', 'b', countb);
             }
             else if ((toYou % 2) == 1)
             {
-                playInMap1(player2, scan, Move, 'g', '#', 's');
+                playInMap1(player2, scan, Move, 'g', '#', 's', counts);
             }
         }
         printf("\n %d Mouvements avant l'explosion de la Bombe 1 !\n", countb);
@@ -319,11 +352,11 @@ void Play(int map, int withFriend)
         {
             if ((toYou % 2) == 0)
             {
-                playInMap2(player1, scan, Move, 'p', '*', 'b');
+                playInMap2(player1, scan, Move, 'p', '*', 'b', countb);
             }
             else if ((toYou % 2) == 1)
             {
-                playInMap2(player2, scan, Move, 'g', '#', 's');
+                playInMap2(player2, scan, Move, 'g', '#', 's', counts);
             }
         }
 

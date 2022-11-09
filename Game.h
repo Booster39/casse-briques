@@ -37,6 +37,8 @@ typedef struct Player
     int x;
     int y;
     Bomb *bomb;
+    int bombX;
+    int bombY;
 } Player;
 
 // Int
