@@ -77,8 +77,7 @@ void choicPlayground()
         printf("\n");
         j = 0;
     }
-    printf("\n");
-    printf("Enter your choice : 1 or 2 \n\n");
+    printf("\nEnter your choice : 1 or 2 \n\n");
 }
 
 int resultMenu()
@@ -282,9 +281,6 @@ void Play(int map, int withFriend)
 
     while (scan != 'f')
     {
-     //   printf("\nEnter your move : ");
-    //scanf("%c", &scan);
-    //printf("\n\n");
         if (map == 1  && withFriend == 2)
         {
             if ((toYou % 2) == 0)
@@ -331,8 +327,8 @@ void Play(int map, int withFriend)
             printf("\n");
             j = 0;
         }
-        printf("toYou [1] = %d\n", toYou);
-        //printf("\nEnter your move [1] : \n");
+        printf("\ntoYou = %d\n", toYou);
+        printf("\nEnter your move : \n");
         scan = getchar();
         putchar(scan);
         if (scan == 'd')
@@ -343,23 +339,23 @@ void Play(int map, int withFriend)
             toYou++;
         if (scan == 'q')
             toYou++;
-    //if (player1->x == 4 && player1->y == 8 && scan == Move->right)
-    //    {
-    //        map1[4][8] = '-';
-    //        player1->y = 0;
-    //        player1->x = 4;
-    //        map1[player1->x][player1->y] = 'p';
-    //}
-    //if (player1->x == 4 && player1->y == 0 && scan == Move->left)
-    //    {
-    //        
-    //        map1[player1->x][player1->y] = '-';
-    //        player1->y = 9;
-    //        player1->x = 4;
-    //        map1[player1->x][player1->y] = 'p';
-//
-    //    }
-//
+        random1to21();
+    if (player1->x == 4 && player1->y == 8 && scan == Move->right)
+        {
+            map1[4][8] = '-';
+            player1->y = 0;
+            player1->x = 4;
+            map1[player1->x][player1->y] = 'p';
+    }
+    if (player1->x == 4 && player1->y == 0 && scan == Move->left)
+        {
+            
+            map1[player1->x][player1->y] = '-';
+            player1->y = 9;
+            player1->x = 4;
+            map1[player1->x][player1->y] = 'p';
+
+        }  
     }
 }
 

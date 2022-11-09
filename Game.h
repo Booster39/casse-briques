@@ -69,5 +69,5 @@ int resultMenu();
 int resultChoicPlayground(int withFriend);
 void putBomb(Map *map, int x, int y, Player *player);
 void Play(int i, int withFriend);
-
+int random1to21();
 #endif

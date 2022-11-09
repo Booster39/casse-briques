@@ -33,6 +33,5 @@ Casse Briques est un jeu dans lequel un joueur doit vaincre les autres en les é
 1) Explosion de la bombe -> brique off --> Abdoulaye
 2) Apparition aléatoire des bonus --> Nassim
 3) Créer les bonus --> Yasmine
-4) 2 joueurs -> Mise en place : arrive très prochainement
 
-5) Partie Réseau : à voir ensemble
+4) Partie Réseau : à voir ensemble

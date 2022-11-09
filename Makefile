@@ -10,6 +10,7 @@ CC	=	gcc
 RM	=	rm -f
 
 SRCS	=	Game.c	\
+			Bonus.c\
 
 OBJS	=	$(SRCS:.c=.o)
 
