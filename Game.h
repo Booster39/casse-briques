@@ -26,8 +26,8 @@ typedef struct Map
 typedef struct
 {
     int range;
-    int x;
-    int y;
+    int bombX;
+    int bombY;
 } Bomb;
 
 typedef struct Player
@@ -37,8 +37,6 @@ typedef struct Player
     int x;
     int y;
     Bomb *bomb;
-    int bombX;
-    int bombY;
 } Player;
 
 // Int

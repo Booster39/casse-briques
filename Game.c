@@ -13,8 +13,8 @@ Bomb *createBomb(int range2, int x2, int y2)
 {
     Bomb *Bombe = malloc(sizeof(Bomb));
     Bombe->range = range2;
-    Bombe->x = x2;
-    Bombe->y = y2;
+    Bombe->bombX = x2;
+    Bombe->bombY = y2;
     return Bombe;
 }
 
@@ -164,6 +164,8 @@ Player *getPlayer2(int i)
 {
     Player *player1 = createPlayer(1, 1, 6, 7, NULL);
     Player *player2 = createPlayer(1, 1, 9, 3, NULL);
+    player1->bomb->range = 1;
+    player2->bomb->range = 1;
     if (i == 1)
     {
         return player1;
@@ -187,21 +189,23 @@ void playInMap1(Player *player1, char scan, Move *Move, char var, char bomb, cha
         if (scan == touch)
         {
             map1[player1->x][player1->y] = bomb;
-            player1->bombX = player1->x;
-            player1->bombY = player1->y;
+            player1->bomb->bombX = player1->x;
+            player1->bomb->bombY = player1->y;
         }
 
-        if (count == 0 && map1[player1->bombX][player1->bombY] == bomb)
+        if (count == 0 && map1[player1->bomb->bombX][player1->bomb->bombY] == bomb)
         {
-            map1[player1->bombX][player1->bombY] = '-';
-            if (map1[player1->bombX][player1->bombY + 1] != 'x')
-                map1[player1->bombX][player1->bombY + 1] = '-';
-            if (map1[player1->bombX][player1->bombY - 1] != 'x')
-                map1[player1->bombX][player1->bombY - 1] = '-';
-            if (map1[player1->bombX + 1][player1->bombY] != 'x')
-                map1[player1->bombX + 1][player1->bombY] = '-';
-            if (map1[player1->bombX - 1][player1->bombY] != 'x')
-                map1[player1->bombX - 1][player1->bombY] = '-';
+            int i = 1;
+            map1[player1->bomb->bombX][player1->bomb->bombY] = '-';
+
+            if (map1[player1->bomb->bombX][player1->bomb->bombY + i] != 'x')
+                map1[player1->bomb->bombX][player1->bomb->bombY + i] = '-';
+            if (map1[player1->bomb->bombX][player1->bomb->bombY - i] != 'x')
+                map1[player1->bomb->bombX][player1->bomb->bombY - i] = '-';
+            if (map1[player1->bomb->bombX + i][player1->bomb->bombY] != 'x')
+                map1[player1->bomb->bombX + i][player1->bomb->bombY] = '-';
+            if (map1[player1->bomb->bombX - i][player1->bomb->bombY] != 'x')
+                map1[player1->bomb->bombX - i][player1->bomb->bombY] = '-';
         }
 
         if(scan == Move->right && map1[player1->x][player1->y + 1] != 'm' && map1[player1->x][player1->y + 1] != 'x')
@@ -241,21 +245,23 @@ void playInMap2(Player *player1, char scan, Move* Move, char var, char bomb, cha
             if (scan == touch)
             {
                 map2[player1->x][player1->y] = bomb;
-                player1->bombX = player1->x;
-                player1->bombY = player1->y;
+                player1->bomb->bombX = player1->x;
+                player1->bomb->bombY = player1->y;
             }
 
-        if (count == 0 && map2[player1->bombX][player1->bombY] == bomb)
+        if (count == 0 && map2[player1->bomb->bombX][player1->bomb->bombY] == bomb)
         {
-            map2[player1->bombX][player1->bombY] = '-';
-            if (map2[player1->bombX][player1->bombY + 1] != 'x')
-                map2[player1->bombX][player1->bombY + 1] = '-';
-            if (map2[player1->bombX][player1->bombY - 1] != 'x')
-                map2[player1->bombX][player1->bombY - 1] = '-';
-            if (map2[player1->bombX + 1][player1->bombY] != 'x')
-                map2[player1->bombX + 1][player1->bombY] = '-';
-            if (map2[player1->bombX - 1][player1->bombY] != 'x')
-                map2[player1->bombX - 1][player1->bombY] = '-';
+            int i = 1;
+            map2[player1->bomb->bombX][player1->bomb->bombY] = '-';
+
+            if (map2[player1->bomb->bombX][player1->bomb->bombY + i] != 'x')
+                map2[player1->bomb->bombX][player1->bomb->bombY + i] = '-';
+            if (map2[player1->bomb->bombX][player1->bomb->bombY - i] != 'x')
+                map2[player1->bomb->bombX][player1->bomb->bombY - i] = '-';
+            if (map2[player1->bomb->bombX + i][player1->bomb->bombY] != 'x')
+                map2[player1->bomb->bombX + i][player1->bomb->bombY] = '-';
+            if (map2[player1->bomb->bombX - i][player1->bomb->bombY] != 'x')
+                map2[player1->bomb->bombX - i][player1->bomb->bombY] = '-';
         }
             
             if(scan == Move->right && map2[player1->x][player1->y + 1] != 'm' && map2[player1->x][player1->y + 1] != 'x')
