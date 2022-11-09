@@ -176,14 +176,20 @@ Player *getPlayer2(int i)
     return NULL;
 }
 
-void playInMap1(Player *player1, char scan, Move *Move, char var)
+int movementsBeforeExplosion(int count)
 {
-            if (scan == 'b' && map1[player1->x][player1->y] == var)
-            map1[player1->x][player1->y] = '*';
+    count--;
+    return count;
+}
+
+void playInMap1(Player *player1, char scan, Move *Move, char var, char bomb, char touch)
+{
+        if (scan == touch)
+            map1[player1->x][player1->y] = bomb;
 
         if(scan == Move->right && map1[player1->x][player1->y + 1] != 'm' && map1[player1->x][player1->y + 1] != 'x')
         {
-            if (map1[player1->x][player1->y] != '*')
+            if (map1[player1->x][player1->y] != bomb)
                 map1[player1->x][player1->y] = '-';
             player1->y++;
             map1[player1->x][player1->y] = var;
@@ -191,14 +197,14 @@ void playInMap1(Player *player1, char scan, Move *Move, char var)
 
         if (scan == Move->left && map1[player1->x][player1->y - 1] != 'm' && map1[player1->x][player1->y - 1] != 'x')
         {
-            if (map1[player1->x][player1->y] != '*')
+            if (map1[player1->x][player1->y] != bomb)
                 map1[player1->x][player1->y] = '-';
             player1->y--;
             map1[player1->x][player1->y] = var;
         }
         if (scan == Move->up && map1[player1->x - 1][player1->y] != 'm' && map1[player1->x - 1][player1->y] != 'x')
         {
-            if (map1[player1->x][player1->y] != '*')
+            if (map1[player1->x][player1->y] != bomb)
                 map1[player1->x][player1->y] = '-';
             player1->x--;
             map1[player1->x][player1->y] = var;
@@ -206,21 +212,21 @@ void playInMap1(Player *player1, char scan, Move *Move, char var)
 
         if (scan == Move->down && map1[player1->x + 1][player1->y] != 'm' && map1[player1->x + 1][player1->y] != 'x')
         {
-            if (map1[player1->x][player1->y] != '*')
+            if (map1[player1->x][player1->y] != bomb)
                 map1[player1->x][player1->y] = '-';
             player1->x++;
             map1[player1->x][player1->y] = var;
         }
 }
 
-void playInMap2(Player *player1, char scan, Move* Move, char var)
+void playInMap2(Player *player1, char scan, Move* Move, char var, char bomb, char touch)
 {
-    if (scan == 'b' && map2[player1->x][player1->y] != 'x' && map2[player1->x][player1->y] == var)
-                map2[player1->x][player1->y] = '*';
+            if (scan == touch)
+                map2[player1->x][player1->y] = bomb;
             
             if(scan == Move->right && map2[player1->x][player1->y + 1] != 'm' && map2[player1->x][player1->y + 1] != 'x')
         {
-            if (map2[player1->x][player1->y] != '*')
+            if (map2[player1->x][player1->y] != bomb)
                 map2[player1->x][player1->y] = '-';
             player1->y++;
             map2[player1->x][player1->y] = var;
@@ -228,7 +234,7 @@ void playInMap2(Player *player1, char scan, Move* Move, char var)
 
         if (scan == Move->left && map2[player1->x][player1->y - 1] != 'm' && map2[player1->x][player1->y - 1] != 'x')
         {
-            if (map2[player1->x][player1->y] != '*')
+            if (map2[player1->x][player1->y] != bomb)
                 map2[player1->x][player1->y] = '-';
             player1->y--;
             map2[player1->x][player1->y] = var;
@@ -236,14 +242,14 @@ void playInMap2(Player *player1, char scan, Move* Move, char var)
 
         if (scan == Move->left && player1->x == 4 && player1->y == 1)
         {   
-            if (map2[player1->x][player1->y] != '*')
+            if (map2[player1->x][player1->y] != bomb)
                 map2[player1->x][player1->y] = '-';
             player1->y--;
             map2[player1->x][player1->y] = var;
         }
         if (scan == Move->up && map2[player1->x - 1][player1->y] != 'm' && map2[player1->x - 1][player1->y] != 'x')
         {
-            if (map2[player1->x][player1->y] != '*')
+            if (map2[player1->x][player1->y] != bomb)
                 map2[player1->x][player1->y] = '-';
             player1->x--;
             map2[player1->x][player1->y] = var;
@@ -251,7 +257,7 @@ void playInMap2(Player *player1, char scan, Move* Move, char var)
 
         if (scan == Move->down && map2[player1->x + 1][player1->y] != 'm' && map2[player1->x + 1][player1->y] != 'x')
         {
-            if (map2[player1->x][player1->y] != '*')
+            if (map2[player1->x][player1->y] != bomb)
                 map2[player1->x][player1->y] = '-';
             player1->x++;
             map2[player1->x][player1->y] = var;
@@ -261,7 +267,7 @@ void playInMap2(Player *player1, char scan, Move* Move, char var)
 void Play(int map, int withFriend)
 {
     Move *Move = createMove('d', 'q', 'z', 's');
-    Player *player1 = createPlayer(1, 3, 3, 1, createBomb(1, 3, 1));
+    Player *player1 = createPlayer(1, 3, 3, 1, createBomb(1, 5, 3));
     Player *player2 = createPlayer(1, 3, 5, 3, createBomb(1, 3, 1));
 
     int i = 0;
@@ -281,15 +287,23 @@ void Play(int map, int withFriend)
 
     while (scan != 'f')
     {
+        if (withFriend == 1)
+        {
+            if (map == 1)
+                playInMap1(player1, scan, Move, 'p', '*', 'b');
+            else
+                playInMap2(player1, scan, Move, 'p', '*', 'b');
+
+        }
         if (map == 1  && withFriend == 2)
         {
             if ((toYou % 2) == 0)
             {
-                playInMap1(player1, scan, Move, 'p');
+                playInMap1(player1, scan, Move, 'p', '*', 'b');
             }
             else if ((toYou % 2) == 1)
             {
-                playInMap1(player2, scan, Move, 'g');
+                playInMap1(player2, scan, Move, 'g', '#', 'b');
             }
         }
 
@@ -297,11 +311,11 @@ void Play(int map, int withFriend)
         {
             if ((toYou % 2) == 0)
             {
-                playInMap2(player1, scan, Move, 'p');
+                playInMap2(player1, scan, Move, 'p', '*', 'b');
             }
             else if ((toYou % 2) == 1)
             {
-                playInMap2(player2, scan, Move, 'g');
+                playInMap2(player2, scan, Move, 'g', '#', 'b');
             }
         }
 
@@ -339,7 +353,10 @@ void Play(int map, int withFriend)
             toYou++;
         if (scan == 'q')
             toYou++;
+        if (scan == 'b')
+            toYou++;
         random1to21();
+    
     if (player1->x == 4 && player1->y == 8 && scan == Move->right)
         {
             map1[4][8] = '-';
