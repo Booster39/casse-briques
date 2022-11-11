@@ -88,8 +88,8 @@ int rangeRed(Player *player)
     player->bomb->range = 7;
     return 0;
 }
-//int invincibility( Player *player)
-//{
-//    player->invincibility = 1;
-//    return 0;
-//}
+int invincibilityFunction( Player *player)
+{
+    player->invincibility = 1;
+    return 0;
+}
