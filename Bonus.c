@@ -18,6 +18,7 @@ typedef struct Player
     int vie;
     int x;
     int y;
+    int invincibility;
     Bomb *bomb;
 } Player;
 //
@@ -88,8 +89,8 @@ int rangeRed(Player *player)
     player->bomb->range = 7;
     return 0;
 }
-//int invincibility( Player *player)
-//{
-//    player->invincibility = 1;
-//    return 0;
-//}
+int invincibility( Player *player)
+{
+    player->invincibility = 1;
+    return 0;
+}

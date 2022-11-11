@@ -197,7 +197,7 @@ int checkBonusMap2(Player *player1, int x, int y)
     if (map2[x][y] == 'R')
         rangeRed(player1);
     if (map2[x][y] == 'I')
-        invincibilityFunction(player1);
+        invincibility(player1);
 }
 
 int checkBonusMap1(Player *player1, int x, int y)
@@ -213,7 +213,7 @@ int checkBonusMap1(Player *player1, int x, int y)
     if (map1[x][y] == 'R')
         rangeRed(player1);
     if (map1[x][y] == 'I')
-        invincibilityFunction(player1);
+        invincibility(player1);
 }
 
 void playInMap1(Player *player1, char scan, Move *Move, char var, char bomb, char touch, int count)

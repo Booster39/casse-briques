@@ -77,7 +77,7 @@ int BombDown( Player *player);
 int RangeYelow( Player *player);
 int RangeBlue( Player *player);
 int rangeRed( Player *player);
-int invincibilityFunction(Player *player);
+int invincibility(Player *player);
 int checkBonusMap1(Player *player1, int x, int y);
 int checkBonusMap2(Player *player1, int x, int y);
 #endif
