@@ -178,12 +178,6 @@ Player *getPlayer2(int i)
     return NULL;
 }
 
-int movementsBeforeExplosion(int count)
-{
-    count--;
-    return count;
-}
-
 int checkBonusMap2(Player *player1, int x, int y)
 {
     if (map2[x][y] == 'U')
@@ -292,10 +286,13 @@ void playInMap2(Player *player1, char scan, Move* Move, char var, char bomb, cha
 
             if (map2[player1->bomb->bombX][player1->bomb->bombY + i] != 'x')
                 map2[player1->bomb->bombX][player1->bomb->bombY + i] = '-';
+
             if (map2[player1->bomb->bombX][player1->bomb->bombY - i] != 'x')
                 map2[player1->bomb->bombX][player1->bomb->bombY - i] = '-';
+
             if (map2[player1->bomb->bombX + i][player1->bomb->bombY] != 'x')
                 map2[player1->bomb->bombX + i][player1->bomb->bombY] = '-';
+
             if (map2[player1->bomb->bombX - i][player1->bomb->bombY] != 'x')
                 map2[player1->bomb->bombX - i][player1->bomb->bombY] = '-';
         }
@@ -372,7 +369,7 @@ void Play(int map, int withFriend)
     {
         if (scan == 'b')
             countb = 5;
-        if (scan == 's')
+        if (scan == 'r')
             counts = 5;
         if (withFriend == 1)
         {
@@ -458,6 +455,14 @@ void Play(int map, int withFriend)
                 counts--;
         }
         if (scan == 'q')
+        {
+            toYou++;
+            if (countb != 0)
+                countb--;
+            if (counts != 0)
+                counts--;
+        }
+        if (scan == 'r')
         {
             toYou++;
             if (countb != 0)
