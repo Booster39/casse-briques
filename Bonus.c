@@ -1,7 +1,7 @@
-int random1to21()
+int randomNum(int max)
 {
     int randomnumber;
-    randomnumber = rand() % 21;
+    randomnumber = rand() % max;
     printf("\nRandom: %d\n", randomnumber);
     return randomnumber;
 }
@@ -21,7 +21,7 @@ typedef struct Player
     Bomb *bomb;
 } Player;
 //
-//void resulteBonus(Map *map, int x, int y){
+// void resulteBonus(Map *map, int x, int y){
 //    int number = random1to10();
 //    if (number >= 0 && number < 6)
 //    {
@@ -58,7 +58,7 @@ typedef struct Player
 //    if (number >= 20 && number < 21)
 //    {
 //        map->map[x][y] = 'V';
-//    }    
+//    }
 //}
 int BombUp(Player *player)
 {
@@ -77,7 +77,7 @@ int RangeYelow(Player *player)
 }
 int RangeBlue(Player *player)
 {
-    if(player->bomb->range > 0)
+    if (player->bomb->range > 0)
     {
         player->bomb->range--;
     }
@@ -88,8 +88,8 @@ int rangeRed(Player *player)
     player->bomb->range = 7;
     return 0;
 }
-int invincibilityFunction( Player *player)
-{
-    player->invincibility = 1;
-    return 0;
-}
+//int invincibility( Player *player)
+//{
+//    player->invincibility = 1;
+//    return 0;
+//}
