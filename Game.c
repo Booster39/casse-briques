@@ -450,10 +450,11 @@ void Play(int map, int withFriend)
             map1[player1->x][player1->y] = 'p';
 
         }  
+        printf("\n BombUp : %d\n", BombUp(player1));
     }
 }
 
-int main(int argc, char const *argv[])
+int main()
 {
     
     menu();

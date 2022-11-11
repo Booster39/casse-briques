@@ -1,5 +1,3 @@
-
-
 int random1to21()
 {
     int randomnumber;
@@ -7,6 +5,21 @@ int random1to21()
     printf("\nRandom: %d\n", randomnumber);
     return randomnumber;
 }
+typedef struct
+{
+    int range;
+    int bombX;
+    int bombY;
+} Bomb;
+
+typedef struct Player
+{
+    int nbrBombe;
+    int vie;
+    int x;
+    int y;
+    Bomb *bomb;
+} Player;
 //
 //void resulteBonus(Map *map, int x, int y){
 //    int number = random1to10();
@@ -47,34 +60,34 @@ int random1to21()
 //        map->map[x][y] = 'V';
 //    }    
 //}
-//int BombUp( Player *player)
-//{
-//    player->nbrBombe++;
-//    return 0;
-//}
-//int BombDown( Player *player)
-//{
-//    player->nbrBombe--;
-//    return 0;
-//}
-//int RangeYelow( Player *player)
-//{
-//    player->bomb->range++;
-//    return 0;
-//}
-//int RangeBlue( Player *player)
-//{
-//    if(player->bomb->range > 0)
-//    {
-//        player->bomb->range--;
-//    }
-//    return 0;
-//}
-//int rangeRed( Player *player)
-//{
-//    player->bomb->range = 7;
-//    return 0;
-//}
+int BombUp(Player *player)
+{
+    player->nbrBombe++;
+    return 0;
+}
+int BombDown(Player *player)
+{
+    player->nbrBombe--;
+    return 0;
+}
+int RangeYelow(Player *player)
+{
+    player->bomb->range++;
+    return 0;
+}
+int RangeBlue(Player *player)
+{
+    if(player->bomb->range > 0)
+    {
+        player->bomb->range--;
+    }
+    return 0;
+}
+int rangeRed(Player *player)
+{
+    player->bomb->range = 7;
+    return 0;
+}
 //int invincibility( Player *player)
 //{
 //    player->invincibility = 1;
