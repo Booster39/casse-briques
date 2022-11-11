@@ -71,4 +71,9 @@ void putBomb(Map *map, int x, int y, Player *player);
 void Play(int i, int withFriend);
 int random1to21();
 int movementsBeforeExplosion(int count);
+int BombUp( Player *player);
+int BombDown( Player *player);
+int RangeYelow( Player *player);
+int RangeBlue( Player *player);
+int rangeRed( Player *player);
 #endif

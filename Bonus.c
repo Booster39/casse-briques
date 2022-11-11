@@ -1,3 +1,5 @@
+
+
 int random1to21()
 {
     int randomnumber;
@@ -5,7 +7,6 @@ int random1to21()
     printf("\nRandom: %d\n", randomnumber);
     return randomnumber;
 }
-
 //
 // void resulteBonus(Map *map, int x, int y){
 //    int number = random1to10();
@@ -46,22 +47,22 @@ int random1to21()
 //        map->map[x][y] = 'V';
 //    }
 //}
-// int BombUp( Player *player)
+//int BombUp( Player *player)
 //{
 //    player->nbrBombe++;
 //    return 0;
 //}
-// int BombDown( Player *player)
+//int BombDown( Player *player)
 //{
 //    player->nbrBombe--;
 //    return 0;
 //}
-// int RangeYelow( Player *player)
+//int RangeYelow( Player *player)
 //{
 //    player->bomb->range++;
 //    return 0;
 //}
-// int RangeBlue( Player *player)
+//int RangeBlue( Player *player)
 //{
 //    if(player->bomb->range > 0)
 //    {
@@ -69,12 +70,12 @@ int random1to21()
 //    }
 //    return 0;
 //}
-// int rangeRed( Player *player)
+//int rangeRed( Player *player)
 //{
 //    player->bomb->range = 7;
 //    return 0;
 //}
-// int invincibility( Player *player)
+//int invincibility( Player *player)
 //{
 //    player->invincibility = 1;
 //    return 0;
