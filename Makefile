@@ -21,7 +21,7 @@ CPPFLAGS	=	-I./include/ -W -Wextra -Wall
 all:	$(NAME)
 
 $(NAME):	$(OBJS)
-	$(CC) $(SRCS) -o $(NAME)
+	$(CC) $(SRCS) -o $(NAME) $(CPPFLAGS)
 
 clean:
 	$(RM) $(OBJS)
