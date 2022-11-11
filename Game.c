@@ -212,13 +212,15 @@ int checkBonusMap1(Player *player1, int x, int y)
 
 void playInMap1(Player *player1, char scan, Move *Move, char var, char bomb, char touch, int count)
 {
-        if (scan == touch)
+        if (scan == touch && player1->nbrBombe != 0)
         {
             map1[player1->x][player1->y] = bomb;
             player1->bomb->bombX = player1->x;
             player1->bomb->bombY = player1->y;
+            player1->nbrBombe--;
         }
-
+        if (player1->nbrBombe == 0)
+            printf("\n Plus aucune bombes restantes le joueur %c\n", var);
         if (count == 0 && map1[player1->bomb->bombX][player1->bomb->bombY] == bomb)
         {
             int i = 1;
@@ -272,12 +274,15 @@ void playInMap1(Player *player1, char scan, Move *Move, char var, char bomb, cha
 
 void playInMap2(Player *player1, char scan, Move* Move, char var, char bomb, char touch, int count)
 {
-            if (scan == touch)
+            if (scan == touch && player1->nbrBombe != 0)
             {
                 map2[player1->x][player1->y] = bomb;
                 player1->bomb->bombX = player1->x;
                 player1->bomb->bombY = player1->y;
+                player1->nbrBombe--;
             }
+            if (player1->nbrBombe == 0)
+                printf("\n Plus aucune bombes restantes le joueur %c\n", var);
 
         if (count == 0 && map2[player1->bomb->bombX][player1->bomb->bombY] == bomb)
         {
@@ -296,7 +301,7 @@ void playInMap2(Player *player1, char scan, Move* Move, char var, char bomb, cha
             if (map2[player1->bomb->bombX - i][player1->bomb->bombY] != 'x')
                 map2[player1->bomb->bombX - i][player1->bomb->bombY] = '-';
         }
-            
+
             if(scan == Move->right && map2[player1->x][player1->y + 1] != 'm' && map2[player1->x][player1->y + 1] != 'x')
         {
             checkBonusMap2(player1, player1->x, player1->y+1);
