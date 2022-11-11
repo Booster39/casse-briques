@@ -473,7 +473,7 @@ void Play(int map, int withFriend)
             if (counts != 0)
                 counts--;
         }
-        randomNum();
+        randomNum(31);
 
     if (player1->x == 4 && player1->y == 8 && scan == Move->right)
         {
