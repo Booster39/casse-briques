@@ -31,6 +31,9 @@ Casse Briques est un jeu dans lequel un joueur doit vaincre les autres en les é
 # TO DO
 
 1) Apparition aléatoire des bonus --> Nassim
-2) Créer les bonus --> Yasmine
 
 4) Partie Réseau : à voir ensemble
+5) Nassim: verif que la bonbe explose pas un bonus ou un vide.
+6) Nassim; fonction verif gagnant.
+7) Abd: verif que les joueur peuvent pas aller sur d'autre joueur / et sur les bombe 
+8) abd:  faire en sort que le nombre de bombe diminue et si == 0 il peut plus poser de bombe.

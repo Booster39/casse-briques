@@ -226,14 +226,25 @@ void playInMap1(Player *player1, char scan, Move *Move, char var, char bomb, cha
             int i = 1;
             map1[player1->bomb->bombX][player1->bomb->bombY] = '-';
 
-            if (map1[player1->bomb->bombX][player1->bomb->bombY + i] != 'x')
+            if (map1[player1->bomb->bombX][player1->bomb->bombY + i] == 'p' || map1[player1->bomb->bombX][player1->bomb->bombY + 1] == 'g')
                 map1[player1->bomb->bombX][player1->bomb->bombY + i] = '-';
-            if (map1[player1->bomb->bombX][player1->bomb->bombY - i] != 'x')
+            if (map1[player1->bomb->bombX][player1->bomb->bombY + i] != 'x')
+                map1[player1->bomb->bombX][player1->bomb->bombY + i] = resulteBonus();
+
+            if (map1[player1->bomb->bombX][player1->bomb->bombY - i] == 'p' || map1[player1->bomb->bombX][player1->bomb->bombY + 1] == 'g')
                 map1[player1->bomb->bombX][player1->bomb->bombY - i] = '-';
-            if (map1[player1->bomb->bombX + i][player1->bomb->bombY] != 'x')
+            if (map1[player1->bomb->bombX][player1->bomb->bombY - i] != 'x')
+                map1[player1->bomb->bombX][player1->bomb->bombY - i] = resulteBonus();
+
+            if (map1[player1->bomb->bombX + i][player1->bomb->bombY] == 'p' || map1[player1->bomb->bombX][player1->bomb->bombY + 1] == 'g')
                 map1[player1->bomb->bombX + i][player1->bomb->bombY] = '-';
-            if (map1[player1->bomb->bombX - i][player1->bomb->bombY] != 'x')
+            if (map1[player1->bomb->bombX + i][player1->bomb->bombY] != 'x')
+                map1[player1->bomb->bombX + i][player1->bomb->bombY] = resulteBonus();
+
+            if (map1[player1->bomb->bombX - i][player1->bomb->bombY] == 'p' || map1[player1->bomb->bombX][player1->bomb->bombY + 1] == 'g')
                 map1[player1->bomb->bombX - i][player1->bomb->bombY] = '-';
+            if (map1[player1->bomb->bombX - i][player1->bomb->bombY] != 'x')
+                map1[player1->bomb->bombX - i][player1->bomb->bombY] = resulteBonus();
         }
 
         if(scan == Move->right && map1[player1->x][player1->y + 1] != 'm' && map1[player1->x][player1->y + 1] != 'x')
@@ -483,7 +494,6 @@ void Play(int map, int withFriend)
             if (counts != 0)
                 counts--;
         }
-        randomNum(31);
 
     if (player1->x == 4 && player1->y == 8 && scan == Move->right)
         {
