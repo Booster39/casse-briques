@@ -34,6 +34,7 @@ Casse Briques est un jeu dans lequel un joueur doit vaincre les autres en les é
 
 4) Partie Réseau : à voir ensemble
 5) Nassim: verif que la bonbe explose pas un bonus ou un vide.
-6) Nassim; fonction verif gagnant.
+6) Nassim: fonction verif gagnant.
+6.5) Abd : faire en sort que les bonus fonctionne.
 7) Abd: verif que les joueur peuvent pas aller sur d'autre joueur / et sur les bombe 
 8) abd:  faire en sort que le nombre de bombe diminue et si == 0 il peut plus poser de bombe.
