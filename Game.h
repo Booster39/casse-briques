@@ -67,11 +67,14 @@ char map2[10][5] = {
 
 void menu();
 int resultMenu();
+Move *createMove(char right, char left, char up, char down);
 int resultChoicPlayground(int withFriend);
 void putBomb(Map *map, int x, int y, Player *player);
 void Play(int i, int withFriend);
 int movementsBeforeExplosion(int count);
 char resulteBonus();
+void checkWinMap1(); 
+void checkWinMap2(); 
 int BombUp(Player *player);
 int BombDown( Player *player);
 int RangeYelow( Player *player);

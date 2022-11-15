@@ -16,7 +16,7 @@ typedef struct Player
     Bomb *bomb;
 } Player;
 
-char resulteBonus()
+void resulteBonus()
 {
     int number = rand() % 51;
     if (number >= 6 && number < 9)
@@ -35,11 +35,11 @@ char resulteBonus()
     {
         return 'B';
     }
-    if (number >= 16 && number < 17)
+    if (number >= 16 && number < 18)
     {
         return 'R';
     }
-    if (number == 17)
+    if (number == 18)
     {
         return 'I';
     }

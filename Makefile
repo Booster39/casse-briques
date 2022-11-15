@@ -11,6 +11,7 @@ RM	=	rm -f
 
 SRCS	=	Game.c	\
 			Bonus.c\
+			Bombe.c\
 
 OBJS	=	$(SRCS:.c=.o)
 
