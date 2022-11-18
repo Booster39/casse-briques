@@ -59,11 +59,11 @@ void checkWinMap1()
                 compteur += 2;
             }
             if (map1[i][j] == '*'){
-                compteur += 1;
+                compteur += 4;
             }
             if (map1[i][j] == "#")
             {
-                compteur += 1;
+                compteur += 8;
             }
         }
     }
@@ -75,9 +75,9 @@ void checkWinMap1()
     if (compteur == 2)
     {
         printf("\n le jouer p a gagner BRAVO !!!! \n");
-        exit(0);s
+        exit(0);
     }
-    else
+    else if(compteur == 12 || compteur == 10 || compteur == 12 || compteur == 7)
     {
         printf("");
     }
@@ -103,11 +103,11 @@ void checkWinMap2()
             }
             if (map2[i][j] == '*')
             {
-                compteur += 1;
+                compteur += 4;
             }
             if (map2[i][j] == "#")
             {
-                compteur += 1;
+                compteur += 8;
             }
         }
     }
@@ -121,7 +121,7 @@ void checkWinMap2()
         printf("le jouer p a gagner BRAVO !!!!");
         exit(0);
     }
-    else
+    else if (compteur == 12 || compteur == 10 || compteur == 12 || compteur == 7)
     {
         printf("");
     }
