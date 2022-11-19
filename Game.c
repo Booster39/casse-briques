@@ -381,7 +381,7 @@ void playInMap1(Player *player1, char scan, Move *Move, char var, char bomb, cha
             map1[player1->bomb->bombX - i][player1->bomb->bombY] = resulteBonus();
     }
 
-    if (scan == Move->right && map1[player1->x][player1->y + 1] != 'm' && map1[player1->x][player1->y + 1] != 'x')
+    if (scan == Move->right && map1[player1->x][player1->y + 1] != 'm' && map1[player1->x][player1->y + 1] != 'x' && map1[player1->x][player1->y + 1] != '*' && map1[player1->x][player1->y + 1] != '#')
     {
         checkBonusMap1(player1, player1->x, player1->y + 1);
         if (map1[player1->x][player1->y] != bomb)
@@ -390,7 +390,7 @@ void playInMap1(Player *player1, char scan, Move *Move, char var, char bomb, cha
         map1[player1->x][player1->y] = var;
     }
 
-    if (scan == Move->left && map1[player1->x][player1->y - 1] != 'm' && map1[player1->x][player1->y - 1] != 'x')
+    if (scan == Move->left && map1[player1->x][player1->y - 1] != 'm' && map1[player1->x][player1->y - 1] != 'x' && map1[player1->x][player1->y - 1] != '*' && map1[player1->x][player1->y - 1] != '#')
     {
         checkBonusMap1(player1, player1->x, player1->y - 1);
         if (map1[player1->x][player1->y] != bomb)
@@ -398,7 +398,7 @@ void playInMap1(Player *player1, char scan, Move *Move, char var, char bomb, cha
         player1->y--;
         map1[player1->x][player1->y] = var;
     }
-    if (scan == Move->up && map1[player1->x - 1][player1->y] != 'm' && map1[player1->x - 1][player1->y] != 'x')
+    if (scan == Move->up && map1[player1->x - 1][player1->y] != 'm' && map1[player1->x - 1][player1->y] != 'x' && map1[player1->x-1][player1->y] != '*' && map1[player1->x-1][player1->y] != '#')
     {
         checkBonusMap1(player1, player1->x - 1, player1->y);
         if (map1[player1->x][player1->y] != bomb)
@@ -407,7 +407,7 @@ void playInMap1(Player *player1, char scan, Move *Move, char var, char bomb, cha
         map1[player1->x][player1->y] = var;
     }
 
-    if (scan == Move->down && map1[player1->x + 1][player1->y] != 'm' && map1[player1->x + 1][player1->y] != 'x')
+    if (scan == Move->down && map1[player1->x + 1][player1->y] != 'm' && map1[player1->x + 1][player1->y] != 'x' && map1[player1->x+1][player1->y] != '*' && map1[player1->x+1][player1->y] != '#')
     {
         checkBonusMap1(player1, player1->x + 1, player1->y);
         if (map1[player1->x][player1->y] != bomb)
@@ -483,7 +483,7 @@ void playInMap2(Player *player1, char scan, Move *Move, char var, char bomb, cha
             map2[player1->bomb->bombX - i][player1->bomb->bombY] = resulteBonus();
     }
 
-    if (scan == Move->right && map2[player1->x][player1->y + 1] != 'm' && map2[player1->x][player1->y + 1] != 'x')
+    if (scan == Move->right && map2[player1->x][player1->y + 1] != 'm' && map2[player1->x][player1->y + 1] != 'x' && map2[player1->x][player1->y + 1] != '*' && map2[player1->x][player1->y + 1] != '#')
     {
         checkBonusMap2(player1, player1->x, player1->y + 1);
         if (map2[player1->x][player1->y] != bomb)
@@ -492,7 +492,7 @@ void playInMap2(Player *player1, char scan, Move *Move, char var, char bomb, cha
         map2[player1->x][player1->y] = var;
     }
 
-    if (scan == Move->left && map2[player1->x][player1->y - 1] != 'm' && map2[player1->x][player1->y - 1] != 'x')
+    if (scan == Move->left && map2[player1->x][player1->y - 1] != 'm' && map2[player1->x][player1->y - 1] != 'x' && map2[player1->x][player1->y - 1] != '*' && map2[player1->x][player1->y - 1] != '#')
     {
         checkBonusMap2(player1, player1->x, player1->y - 1);
         if (map2[player1->x][player1->y] != bomb)
@@ -509,7 +509,7 @@ void playInMap2(Player *player1, char scan, Move *Move, char var, char bomb, cha
         player1->y--;
         map2[player1->x][player1->y] = var;
     }
-    if (scan == Move->up && map2[player1->x - 1][player1->y] != 'm' && map2[player1->x - 1][player1->y] != 'x')
+    if (scan == Move->up && map2[player1->x - 1][player1->y] != 'm' && map2[player1->x - 1][player1->y] != 'x' && map2[player1->x-1][player1->y] != '*' && map2[player1->x-1][player1->y] != '#')
     {
         checkBonusMap2(player1, player1->x - 1, player1->y);
         if (map2[player1->x][player1->y] != bomb)
@@ -518,7 +518,7 @@ void playInMap2(Player *player1, char scan, Move *Move, char var, char bomb, cha
         map2[player1->x][player1->y] = var;
     }
 
-    if (scan == Move->down && map2[player1->x + 1][player1->y] != 'm' && map2[player1->x + 1][player1->y] != 'x')
+    if (scan == Move->down && map2[player1->x + 1][player1->y] != 'm' && map2[player1->x + 1][player1->y] != 'x' && map2[player1->x+1][player1->y] != '*' && map2[player1->x+1][player1->y] != '#')
     {
         checkBonusMap2(player1, player1->x + 1, player1->y);
         if (map2[player1->x][player1->y] != bomb)
