@@ -60,24 +60,24 @@ void checkWinMap1()
             }
             if (map1[i][j] == '*')
             {
-                compteur += 1;
+                compteur += 4;
             }
             if (map1[i][j] == "#")
             {
-                compteur += 1;
+                compteur += 8;
             }
         }
     }
+
     if (compteur == 3)
     {
-        printf("\n  le jouer g a gagner BRAVO !!!! \n");
+        printf("\n  PLAYER g WIN!!!! \n");
         exit(0);
     }
     if (compteur == 2)
     {
-        printf("\n le jouer p a gagner BRAVO !!!! \n");
+        printf("\n PLAYER p WIN !!!! \n");
         exit(0);
-        
     }
     else
     {
@@ -99,28 +99,29 @@ void checkWinMap2()
             {
                 compteur += 3;
             }
+            if (map2[i][j] == "#")
+            {
+                compteur += 1;
+            }
             if (map2[i][j] == 'p')
             {
                 compteur += 2;
             }
             if (map2[i][j] == '*')
             {
-                compteur += 1;
-            }
-            if (map2[i][j] == "#")
-            {
-                compteur += 1;
+                compteur += 2;
             }
         }
     }
     if (compteur == 3)
     {
-        printf("le jouer g a gagner BRAVO !!!!");
+        printf("\n  PLAYER g WIN!!!! \n");
         exit(0);
     }
     if (compteur == 2)
     {
-        printf("le jouer p a gagner BRAVO !!!!");
+        printf("\n PLAYER p WIN !!!! \n");
+        printf("compteur = %d", compteur);
         exit(0);
     }
     else
@@ -128,7 +129,6 @@ void checkWinMap2()
         printf("");
     }
 }
-
 void menu()
 {
     printf("Menu :\n\n");
@@ -231,7 +231,6 @@ int resultChoicPlayground(int withFriend)
     {
 
         printf("You choosed MAP1 %d:\n", c);
-        getMap(c);
         Play(c, withFriend);
         break;
     }
@@ -239,7 +238,6 @@ int resultChoicPlayground(int withFriend)
     {
 
         printf("You choosed MAP2 %d:\n", c);
-        getMap(c);
         Play(c, withFriend);
         break;
     }
@@ -277,10 +275,10 @@ int checkBonusMap2(Player *player1, int x, int y)
         RangeYelow(player1);
     if (map2[x][y] == 'B')
         RangeBlue(player1);
-    if (map2[x][y] == 'R')
-        rangeRed(player1);
-    if (map2[x][y] == 'I')
-        invincibility(player1);
+    //if (map2[x][y] == 'R')
+      //  rangeRed(player1);
+    //if (map2[x][y] == 'I')
+      //  invincibility(player1);
 }
 
 int checkBonusMap1(Player *player1, int x, int y)
@@ -293,10 +291,10 @@ int checkBonusMap1(Player *player1, int x, int y)
         RangeYelow(player1);
     if (map1[x][y] == 'B')
         RangeBlue(player1);
-    if (map1[x][y] == 'R')
-        rangeRed(player1);
-    if (map1[x][y] == 'I')
-        invincibility(player1);
+    //if (map1[x][y] == 'R')
+      //  rangeRed(player1);
+   // if (map1[x][y] == 'I')
+     //   invincibility(player1);
 }
 
 void playInMap1(Player *player1, char scan, Move *Move, char var, char bomb, char touch, int count)
