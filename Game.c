@@ -167,7 +167,21 @@ void choicPlayground()
         printf("\n");
         j = 0;
     }
-    printf("\nEnter your choice : 1 or 2 \n\n");
+    printf("\n");
+    printf("________________________\n");
+    printf("\n");
+    printf("    Map 3 \n");
+
+    for (i = 2; i < 14; i++)
+    {
+        for (j = 0; j < 10; j++)
+        {
+            printf("%c ", map3[i][j]);
+        }
+        printf("\n");
+        j = 0;
+    }
+    printf("\nEnter your choice : 1 or 2 or 3 for exit\n\n");
 }
 
 int resultMenu()
@@ -222,47 +236,52 @@ Map *getMap(int i)
 int resultChoicPlayground(int withFriend)
 {
     int number;
-    printf("Map à choisir : ");
+    printf("Enter your choice : 1 or 2 or 3 for exit\n\n");
     scanf("%d", &number);
+
     int c = number;
     switch (c)
     {
     case 1:
     {
 
-        printf("You choosed MAP1 %d:\n", c);
+        printf("You choosed MAP %d:\n", c);
         Play(c, withFriend);
         break;
     }
     case 2:
     {
 
-        printf("You choosed MAP2 %d:\n", c);
+        printf("You choosed MAP %d:\n", c);
+        Play(c, withFriend);
+        break;
+    }
+    case 3:
+    {
+        printf("You choosed MAP %d:\n", c);
         Play(c, withFriend);
         break;
     }
     default:
-        printf("Incorrect number :\n");
+        printf("Incorrect number : %d\n");
     }
     return c;
 }
 
-Player *getPlayer2(int i)
+int checkBonusMap3(Player *player1, int x, int y)
 {
-    Player *player1 = createPlayer(1, 1, 6, 7, NULL);
-    Player *player2 = createPlayer(1, 1, 9, 3, NULL);
-    player1->bomb->range = 1;
-    player2->bomb->range = 1;
-    if (i == 1)
-    {
-        return player1;
-    }
-    if (i == 2)
-    {
-        return player2;
-    }
-
-    return NULL;
+    if (map3[x][y] == 'U')
+        BombUp(player1);
+    if (map3[x][y] == 'D')
+        BombDown(player1);
+    if (map3[x][y] == 'J')
+        RangeYelow(player1);
+    if (map3[x][y] == 'B')
+        RangeBlue(player1);
+    if (map3[x][y] == 'R')
+        rangeRed(player1);
+    if (map3[x][y] == 'I')
+        invincibility(player1);
 }
 
 int checkBonusMap2(Player *player1, int x, int y)
@@ -275,10 +294,10 @@ int checkBonusMap2(Player *player1, int x, int y)
         RangeYelow(player1);
     if (map2[x][y] == 'B')
         RangeBlue(player1);
-    //if (map2[x][y] == 'R')
-      //  rangeRed(player1);
-    //if (map2[x][y] == 'I')
-      //  invincibility(player1);
+    if (map2[x][y] == 'R')
+        rangeRed(player1);
+    if (map2[x][y] == 'I')
+        invincibility(player1);
 }
 
 int checkBonusMap1(Player *player1, int x, int y)
@@ -291,10 +310,10 @@ int checkBonusMap1(Player *player1, int x, int y)
         RangeYelow(player1);
     if (map1[x][y] == 'B')
         RangeBlue(player1);
-    //if (map1[x][y] == 'R')
-      //  rangeRed(player1);
-   // if (map1[x][y] == 'I')
-     //   invincibility(player1);
+    if (map1[x][y] == 'R')
+        rangeRed(player1);
+    if (map1[x][y] == 'I')
+        invincibility(player1);
 }
 
 void playInMap1(Player *player1, char scan, Move *Move, char var, char bomb, char touch, int count)
@@ -509,11 +528,130 @@ void playInMap2(Player *player1, char scan, Move *Move, char var, char bomb, cha
     }
 }
 
+void playInMap3(Player *player1, char scan, Move *Move, char var, char bomb, char touch, int count)
+{
+    if (scan == touch && player1->nbrBombe != 0)
+    {
+        map3[player1->x][player1->y] = bomb;
+        player1->bomb->bombX = player1->x;
+        player1->bomb->bombY = player1->y;
+        player1->nbrBombe--;
+    }
+    if (player1->nbrBombe == 0)
+        printf("\n player %c have 0 bomb\n", var);
+
+    if (count == 0 && map3[player1->bomb->bombX][player1->bomb->bombY] == bomb)
+    {
+        int i = 1;
+        map3[player1->bomb->bombX][player1->bomb->bombY] = '-';
+
+        if (map3[player1->bomb->bombX][player1->bomb->bombY + i] == 'p' || map3[player1->bomb->bombX][player1->bomb->bombY + i] == 'g' || map3[player1->bomb->bombX][player1->bomb->bombY + i] == 'y' || map3[player1->bomb->bombX][player1->bomb->bombY + i] == 'b')
+            map3[player1->bomb->bombX][player1->bomb->bombY + i] = '-';
+
+        if (map3[player1->bomb->bombX][player1->bomb->bombY + i] != 'x' &&
+            map3[player1->bomb->bombX][player1->bomb->bombY + i] != '-' &&
+            map3[player1->bomb->bombX][player1->bomb->bombY + i] != 'U' &&
+            map3[player1->bomb->bombX][player1->bomb->bombY + i] != 'D' &&
+            map3[player1->bomb->bombX][player1->bomb->bombY + i] != 'J' &&
+            map3[player1->bomb->bombX][player1->bomb->bombY + i] != 'B' &&
+            map3[player1->bomb->bombX][player1->bomb->bombY + i] != 'R' &&
+            map3[player1->bomb->bombX][player1->bomb->bombY + i] != 'I')
+            map3[player1->bomb->bombX][player1->bomb->bombY + i] = resulteBonus();
+
+        if (map3[player1->bomb->bombX][player1->bomb->bombY - i] == 'p' || map3[player1->bomb->bombX][player1->bomb->bombY - i] == 'g' || map3[player1->bomb->bombX][player1->bomb->bombY - i] == 'y' || map3[player1->bomb->bombX][player1->bomb->bombY - i] == 'b')
+            map3[player1->bomb->bombX][player1->bomb->bombY - i] = '-';
+        if (map3[player1->bomb->bombX][player1->bomb->bombY - i] != 'x' &&
+            map3[player1->bomb->bombX][player1->bomb->bombY - i] != '-' &&
+            map3[player1->bomb->bombX][player1->bomb->bombY - i] != 'U' &&
+            map3[player1->bomb->bombX][player1->bomb->bombY - i] != 'D' &&
+            map3[player1->bomb->bombX][player1->bomb->bombY - i] != 'J' &&
+            map3[player1->bomb->bombX][player1->bomb->bombY - i] != 'B' &&
+            map3[player1->bomb->bombX][player1->bomb->bombY - i] != 'R' &&
+            map3[player1->bomb->bombX][player1->bomb->bombY - i] != 'I')
+            map3[player1->bomb->bombX][player1->bomb->bombY - i] = resulteBonus();
+
+        if (map3[player1->bomb->bombX + i][player1->bomb->bombY] == 'p' || map3[player1->bomb->bombX + i][player1->bomb->bombY] == 'g' || map3[player1->bomb->bombX][player1->bomb->bombY + i] == 'y' || map3[player1->bomb->bombX][player1->bomb->bombY + i] == 'b')
+            map3[player1->bomb->bombX + i][player1->bomb->bombY] = '-';
+        if (map3[player1->bomb->bombX + i][player1->bomb->bombY] != 'x' &&
+            map3[player1->bomb->bombX + i][player1->bomb->bombY] != '-' &&
+            map3[player1->bomb->bombX + i][player1->bomb->bombY] != 'U' &&
+            map3[player1->bomb->bombX + i][player1->bomb->bombY] != 'D' &&
+            map3[player1->bomb->bombX + i][player1->bomb->bombY] != 'J' &&
+            map3[player1->bomb->bombX + i][player1->bomb->bombY] != 'B' &&
+            map3[player1->bomb->bombX + i][player1->bomb->bombY] != 'R' &&
+            map3[player1->bomb->bombX + i][player1->bomb->bombY] != 'I')
+            map3[player1->bomb->bombX + i][player1->bomb->bombY] = resulteBonus();
+
+        if (map3[player1->bomb->bombX - i][player1->bomb->bombY] == 'p' || map3[player1->bomb->bombX - i][player1->bomb->bombY] == 'g' || map3[player1->bomb->bombX][player1->bomb->bombY + i] == 'y' || map3[player1->bomb->bombX][player1->bomb->bombY + i] == 'b')
+            map3[player1->bomb->bombX - i][player1->bomb->bombY] = '-';
+        if (map3[player1->bomb->bombX - i][player1->bomb->bombY] != 'x' &&
+            map3[player1->bomb->bombX - i][player1->bomb->bombY] != '-' &&
+            map3[player1->bomb->bombX - i][player1->bomb->bombY] != 'U' &&
+            map3[player1->bomb->bombX - i][player1->bomb->bombY] != 'D' &&
+            map3[player1->bomb->bombX - i][player1->bomb->bombY] != 'J' &&
+            map3[player1->bomb->bombX - i][player1->bomb->bombY] != 'B' &&
+            map3[player1->bomb->bombX - i][player1->bomb->bombY] != 'R' &&
+            map3[player1->bomb->bombX - i][player1->bomb->bombY] != 'I')
+            map3[player1->bomb->bombX - i][player1->bomb->bombY] = resulteBonus();
+    }
+
+    if (scan == Move->right && map3[player1->x][player1->y + 1] != 'm' && map3[player1->x][player1->y + 1] != 'x')
+    {
+        checkBonusMap3(player1, player1->x, player1->y + 1);
+        if (map3[player1->x][player1->y] != bomb)
+            map3[player1->x][player1->y] = '-';
+        player1->y++;
+        map3[player1->x][player1->y] = var;
+    }
+
+    if (scan == Move->left && map3[player1->x][player1->y - 1] != 'm' && map3[player1->x][player1->y - 1] != 'x')
+    {
+        checkBonusMap3(player1, player1->x, player1->y - 1);
+        if (map3[player1->x][player1->y] != bomb)
+            map3[player1->x][player1->y] = '-';
+        player1->y--;
+        map3[player1->x][player1->y] = var;
+    }
+
+    if (scan == Move->left && player1->x == 4 && player1->y == 1)
+    {
+        checkBonusMap3(player1, player1->x, player1->y - 1);
+        if (map3[player1->x][player1->y] != bomb)
+            map3[player1->x][player1->y] = '-';
+        player1->y--;
+        map3[player1->x][player1->y] = var;
+    }
+    if (scan == Move->up && map3[player1->x - 1][player1->y] != 'm' && map3[player1->x - 1][player1->y] != 'x')
+    {
+        checkBonusMap3(player1, player1->x - 1, player1->y);
+        if (map3[player1->x][player1->y] != bomb)
+            map3[player1->x][player1->y] = '-';
+        player1->x--;
+        map3[player1->x][player1->y] = var;
+    }
+
+    if (scan == Move->down && map3[player1->x + 1][player1->y] != 'm' && map3[player1->x + 1][player1->y] != 'x')
+    {
+        checkBonusMap3(player1, player1->x + 1, player1->y);
+        if (map3[player1->x][player1->y] != bomb)
+            map3[player1->x][player1->y] = '-';
+        player1->x++;
+        map3[player1->x][player1->y] = var;
+    }
+}
+
 void Play(int map, int withFriend)
 {
     Move *Move = createMove('d', 'q', 'z', 's');
     Player *player1 = createPlayer(1, 3, 3, 1, createBomb(1, 5, 3));
     Player *player2 = createPlayer(1, 3, 5, 3, createBomb(1, 3, 1));
+
+    Player *player11 = createPlayer(4, 3, 3, 1, createBomb(1, 3, 1));
+    Player *player21 = createPlayer(4, 3, 12, 8, createBomb(1, 4, 1));
+    Player *player31 = createPlayer(4, 3, 3, 8, createBomb(1, 5, 1));
+    Player *player41 = createPlayer(4, 3, 12, 1, createBomb(1, 6, 1));
+
+    Player *playerbot = createPlayer(1, 3, 5, 3, createBomb(1, 3, 1));
 
     int i = 0;
     int j = 0;
@@ -521,11 +659,16 @@ void Play(int map, int withFriend)
     int toYou = 1;
     int countb = 0;
     int counts = 0;
+    int countd = 0;
+    int countf = 0;
 
     if (withFriend == 1)
     {
-        map1[5][3] = '-';
-        map2[5][3] = '-';
+        map1[5][3] = '?';
+        map2[5][3] = '?';
+        map3[12][8] = '?';
+        map3[3][8] = '-';
+        map3[3][12] = '-';
     }
 
     printf("\nEnter your move : ");
@@ -539,12 +682,19 @@ void Play(int map, int withFriend)
             countb = 5;
         if (scan == 'r')
             counts = 5;
+        if (scan == 't')
+            countd = 5;
+        if (scan == 'n')
+            countf = 5;
+
         if (withFriend == 1)
         {
             if (map == 1)
                 playInMap1(player1, scan, Move, 'p', '*', 'b', countb);
-            else
+            if(map == 2)
                 playInMap2(player1, scan, Move, 'p', '*', 'b', countb);
+            if (map == 3)
+                playInMap3(player1, scan, Move, 'p', '*', 'b', countb);
         }
         if (map == 1 && withFriend == 2)
         {
@@ -559,6 +709,11 @@ void Play(int map, int withFriend)
         }
         printf("\n %d Mouvements avant l'explosion de la Bombe 1 !\n", countb);
         printf("\n %d Mouvements avant l'explosion de la Bombe 2 !\n", counts);
+        if (map == 3 && withFriend == 2)
+        {
+            printf("\n %d Mouvements avant l'explosion de la Bombe 3 !\n", countd);
+            printf("\n %d Mouvements avant l'explosion de la Bombe 4 !", countf);
+        }
         if (map == 2 && withFriend == 2)
         {
             if ((toYou % 2) == 0)
@@ -568,6 +723,26 @@ void Play(int map, int withFriend)
             else if ((toYou % 2) == 1)
             {
                 playInMap2(player2, scan, Move, 'g', '#', 'r', counts);
+            }
+        }
+        if (map == 3 && withFriend == 2)
+        {
+            toYou == 1;
+            if ((toYou % 4) == 1)
+            {
+                playInMap3(player11, scan, Move, 'p', '*', 'b', countb);
+            }
+            else if ((toYou % 4) == 2)
+            {
+                playInMap3(player21, scan, Move, 'g', '#', 'r', counts);
+            }
+            else if ((toYou % 4) == 3)
+            {
+                playInMap3(player31, scan, Move, 'y', '!', 't', countd);
+            }
+            else if ((toYou % 4) == 0)
+            {
+                playInMap3(player41, scan, Move, 'b', '$', 'n', countf);
             }
         }
 
@@ -596,13 +771,29 @@ void Play(int map, int withFriend)
             printf("\n");
             j = 0;
         }
-        if (map == 2)
+        for (i = 2; i < 14; i++)
+        {
+            for (j = 0; j < 10; j++)
+            {
+                if (map == 3)
+                {
+                    printf("%c ", map3[i][j]);
+                }
+            }
+            printf("\n");
+            j = 0;
+        }
+        if (map == 2 && withFriend == 2)
         {
             checkWinMap2();
         }
-        else if (map == 1)
+        else if (map == 1 && withFriend == 2)
         {
             checkWinMap1();
+        }
+        else if (map == 3 && withFriend == 2)
+        {
+            //checkWinMap3();
         }
         printf("\ntoYou = %d\n", toYou); // a sup
         printf("\nEnter your move : \n");
@@ -672,7 +863,6 @@ void Play(int map, int withFriend)
             player1->x = 4;
             map1[player1->x][player1->y] = 'p';
         }
-        printf("\n BombUp : %d\n", BombUp(player1));
         // checkWinMap1();
         // checkWinMap2();
     }
