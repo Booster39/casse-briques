@@ -54,11 +54,12 @@ void checkWinMap1()
             {
                 compteur += 3;
             }
-            if (map1[i][j] == 'p' )
+            if (map1[i][j] == 'p')
             {
                 compteur += 2;
             }
-            if (map1[i][j] == '*'){
+            if (map1[i][j] == '*')
+            {
                 compteur += 1;
             }
             if (map1[i][j] == "#")
@@ -75,7 +76,8 @@ void checkWinMap1()
     if (compteur == 2)
     {
         printf("\n le jouer p a gagner BRAVO !!!! \n");
-        exit(0);s
+        exit(0);
+        
     }
     else
     {
@@ -139,8 +141,8 @@ void menu()
 void choicPlayground()
 {
     printf("\n\nChoose your PlayGround :\n\n");
-    int i=0;
-    int j=0;
+    int i = 0;
+    int j = 0;
     printf("    Map 1 \n");
     for (i = 2; i < 7; i++)
     {
@@ -155,7 +157,7 @@ void choicPlayground()
     printf("________________________\n");
     printf("\n");
     printf("    Map 2 \n");
-    
+
     for (i = 2; i < 10; i++)
     {
         for (j = 0; j < 5; j++)
@@ -227,7 +229,7 @@ int resultChoicPlayground(int withFriend)
     {
     case 1:
     {
-       
+
         printf("You choosed MAP1 %d:\n", c);
         getMap(c);
         Play(c, withFriend);
@@ -235,7 +237,7 @@ int resultChoicPlayground(int withFriend)
     }
     case 2:
     {
-        
+
         printf("You choosed MAP2 %d:\n", c);
         getMap(c);
         Play(c, withFriend);
@@ -246,7 +248,6 @@ int resultChoicPlayground(int withFriend)
     }
     return c;
 }
-
 
 Player *getPlayer2(int i)
 {
@@ -300,215 +301,214 @@ int checkBonusMap1(Player *player1, int x, int y)
 
 void playInMap1(Player *player1, char scan, Move *Move, char var, char bomb, char touch, int count)
 {
-        if (scan == touch && player1->nbrBombe != 0)
-        {
-            map1[player1->x][player1->y] = bomb;
-            player1->bomb->bombX = player1->x;
-            player1->bomb->bombY = player1->y;
-            player1->nbrBombe--;
-        }
-        if (player1->nbrBombe == 0)
-            printf("\n Plus aucune bombes restantes le joueur %c\n", var);
-        if (count == 0 && map1[player1->bomb->bombX][player1->bomb->bombY] == bomb)
-        {
-            int i = 1;
-            map1[player1->bomb->bombX][player1->bomb->bombY] = '-';
+    if (scan == touch && player1->nbrBombe != 0)
+    {
+        map1[player1->x][player1->y] = bomb;
+        player1->bomb->bombX = player1->x;
+        player1->bomb->bombY = player1->y;
+        player1->nbrBombe--;
+    }
+    if (player1->nbrBombe == 0)
+        printf("\n Plus aucune bombes restantes le joueur %c\n", var);
+    if (count == 0 && map1[player1->bomb->bombX][player1->bomb->bombY] == bomb)
+    {
+        int i = 1;
+        map1[player1->bomb->bombX][player1->bomb->bombY] = '-';
 
-            if (map1[player1->bomb->bombX][player1->bomb->bombY + i] == 'p' || map1[player1->bomb->bombX][player1->bomb->bombY + i] == 'g')
-                map1[player1->bomb->bombX][player1->bomb->bombY + i] = '-';
-            if (map1[player1->bomb->bombX][player1->bomb->bombY + i] != 'x' && 
-                map1[player1->bomb->bombX][player1->bomb->bombY + i] != '-' &&
-                map1[player1->bomb->bombX][player1->bomb->bombY + i] != 'U' &&
-                map1[player1->bomb->bombX][player1->bomb->bombY + i] != 'D' &&
-                map1[player1->bomb->bombX][player1->bomb->bombY + i] != 'J' &&
-                map1[player1->bomb->bombX][player1->bomb->bombY + i] != 'B' &&
-                map1[player1->bomb->bombX][player1->bomb->bombY + i] != 'R' &&
-                map1[player1->bomb->bombX][player1->bomb->bombY + i] != 'I' 
-                )
-                map1[player1->bomb->bombX][player1->bomb->bombY + i] = resulteBonus();
+        if (map1[player1->bomb->bombX][player1->bomb->bombY + i] == 'p' || map1[player1->bomb->bombX][player1->bomb->bombY + i] == 'g')
+            map1[player1->bomb->bombX][player1->bomb->bombY + i] = '-';
+        if (map1[player1->bomb->bombX][player1->bomb->bombY + i] != 'x' &&
+            map1[player1->bomb->bombX][player1->bomb->bombY + i] != '-' &&
+            map1[player1->bomb->bombX][player1->bomb->bombY + i] != 'U' &&
+            map1[player1->bomb->bombX][player1->bomb->bombY + i] != 'D' &&
+            map1[player1->bomb->bombX][player1->bomb->bombY + i] != 'J' &&
+            map1[player1->bomb->bombX][player1->bomb->bombY + i] != 'B' &&
+            map1[player1->bomb->bombX][player1->bomb->bombY + i] != 'R' &&
+            map1[player1->bomb->bombX][player1->bomb->bombY + i] != 'I')
+            map1[player1->bomb->bombX][player1->bomb->bombY + i] = resulteBonus();
 
-            if (map1[player1->bomb->bombX][player1->bomb->bombY - i] == 'p' || map1[player1->bomb->bombX][player1->bomb->bombY - i] == 'g')
-                map1[player1->bomb->bombX][player1->bomb->bombY - i] = '-';
-            if (map1[player1->bomb->bombX][player1->bomb->bombY - i] != 'x' &&
-                map1[player1->bomb->bombX][player1->bomb->bombY - i] != '-' &&
-                map1[player1->bomb->bombX][player1->bomb->bombY - i] != 'U' &&
-                map1[player1->bomb->bombX][player1->bomb->bombY - i] != 'D' &&
-                map1[player1->bomb->bombX][player1->bomb->bombY - i] != 'J' &&
-                map1[player1->bomb->bombX][player1->bomb->bombY - i] != 'B' &&
-                map1[player1->bomb->bombX][player1->bomb->bombY - i] != 'R' &&
-                map1[player1->bomb->bombX][player1->bomb->bombY - i] != 'I')
-                map1[player1->bomb->bombX][player1->bomb->bombY - i] = resulteBonus();
+        if (map1[player1->bomb->bombX][player1->bomb->bombY - i] == 'p' || map1[player1->bomb->bombX][player1->bomb->bombY - i] == 'g')
+            map1[player1->bomb->bombX][player1->bomb->bombY - i] = '-';
+        if (map1[player1->bomb->bombX][player1->bomb->bombY - i] != 'x' &&
+            map1[player1->bomb->bombX][player1->bomb->bombY - i] != '-' &&
+            map1[player1->bomb->bombX][player1->bomb->bombY - i] != 'U' &&
+            map1[player1->bomb->bombX][player1->bomb->bombY - i] != 'D' &&
+            map1[player1->bomb->bombX][player1->bomb->bombY - i] != 'J' &&
+            map1[player1->bomb->bombX][player1->bomb->bombY - i] != 'B' &&
+            map1[player1->bomb->bombX][player1->bomb->bombY - i] != 'R' &&
+            map1[player1->bomb->bombX][player1->bomb->bombY - i] != 'I')
+            map1[player1->bomb->bombX][player1->bomb->bombY - i] = resulteBonus();
 
-            if (map1[player1->bomb->bombX + i][player1->bomb->bombY] == 'p' || map1[player1->bomb->bombX + i][player1->bomb->bombY] == 'g')
-                map1[player1->bomb->bombX + i][player1->bomb->bombY] = '-';
-            if (map1[player1->bomb->bombX + i][player1->bomb->bombY] != 'x' &&
-                map1[player1->bomb->bombX + i][player1->bomb->bombY] != '-' &&
-                map1[player1->bomb->bombX + i][player1->bomb->bombY] != 'U' &&
-                map1[player1->bomb->bombX + i][player1->bomb->bombY] != 'D' &&
-                map1[player1->bomb->bombX + i][player1->bomb->bombY] != 'J' &&
-                map1[player1->bomb->bombX + i][player1->bomb->bombY] != 'B' &&
-                map1[player1->bomb->bombX + i][player1->bomb->bombY] != 'R' &&
-                map1[player1->bomb->bombX + i][player1->bomb->bombY] != 'I')
-                map1[player1->bomb->bombX + i][player1->bomb->bombY] = resulteBonus();
+        if (map1[player1->bomb->bombX + i][player1->bomb->bombY] == 'p' || map1[player1->bomb->bombX + i][player1->bomb->bombY] == 'g')
+            map1[player1->bomb->bombX + i][player1->bomb->bombY] = '-';
+        if (map1[player1->bomb->bombX + i][player1->bomb->bombY] != 'x' &&
+            map1[player1->bomb->bombX + i][player1->bomb->bombY] != '-' &&
+            map1[player1->bomb->bombX + i][player1->bomb->bombY] != 'U' &&
+            map1[player1->bomb->bombX + i][player1->bomb->bombY] != 'D' &&
+            map1[player1->bomb->bombX + i][player1->bomb->bombY] != 'J' &&
+            map1[player1->bomb->bombX + i][player1->bomb->bombY] != 'B' &&
+            map1[player1->bomb->bombX + i][player1->bomb->bombY] != 'R' &&
+            map1[player1->bomb->bombX + i][player1->bomb->bombY] != 'I')
+            map1[player1->bomb->bombX + i][player1->bomb->bombY] = resulteBonus();
 
-            if (map1[player1->bomb->bombX - i][player1->bomb->bombY] == 'p' || map1[player1->bomb->bombX - i][player1->bomb->bombY + 1] == 'g')
-                map1[player1->bomb->bombX - i][player1->bomb->bombY] = '-';
-            if (map1[player1->bomb->bombX - i][player1->bomb->bombY] != 'x' &&
-                map1[player1->bomb->bombX - i][player1->bomb->bombY] != '-' &&
-                map1[player1->bomb->bombX - i][player1->bomb->bombY] != 'U' &&
-                map1[player1->bomb->bombX - i][player1->bomb->bombY] != 'D' &&
-                map1[player1->bomb->bombX - i][player1->bomb->bombY] != 'J' &&
-                map1[player1->bomb->bombX - i][player1->bomb->bombY] != 'B' &&
-                map1[player1->bomb->bombX - i][player1->bomb->bombY] != 'R' &&
-                map1[player1->bomb->bombX - i][player1->bomb->bombY] != 'I')
-                map1[player1->bomb->bombX - i][player1->bomb->bombY] = resulteBonus();
-        }
+        if (map1[player1->bomb->bombX - i][player1->bomb->bombY] == 'p' || map1[player1->bomb->bombX - i][player1->bomb->bombY + 1] == 'g')
+            map1[player1->bomb->bombX - i][player1->bomb->bombY] = '-';
+        if (map1[player1->bomb->bombX - i][player1->bomb->bombY] != 'x' &&
+            map1[player1->bomb->bombX - i][player1->bomb->bombY] != '-' &&
+            map1[player1->bomb->bombX - i][player1->bomb->bombY] != 'U' &&
+            map1[player1->bomb->bombX - i][player1->bomb->bombY] != 'D' &&
+            map1[player1->bomb->bombX - i][player1->bomb->bombY] != 'J' &&
+            map1[player1->bomb->bombX - i][player1->bomb->bombY] != 'B' &&
+            map1[player1->bomb->bombX - i][player1->bomb->bombY] != 'R' &&
+            map1[player1->bomb->bombX - i][player1->bomb->bombY] != 'I')
+            map1[player1->bomb->bombX - i][player1->bomb->bombY] = resulteBonus();
+    }
 
-        if(scan == Move->right && map1[player1->x][player1->y + 1] != 'm' && map1[player1->x][player1->y + 1] != 'x')
-        {
-            checkBonusMap1(player1, player1->x, player1->y+1);
-            if (map1[player1->x][player1->y] != bomb)
-                map1[player1->x][player1->y] = '-';
-            player1->y++;
-            map1[player1->x][player1->y] = var;
-        }
+    if (scan == Move->right && map1[player1->x][player1->y + 1] != 'm' && map1[player1->x][player1->y + 1] != 'x')
+    {
+        checkBonusMap1(player1, player1->x, player1->y + 1);
+        if (map1[player1->x][player1->y] != bomb)
+            map1[player1->x][player1->y] = '-';
+        player1->y++;
+        map1[player1->x][player1->y] = var;
+    }
 
-        if (scan == Move->left && map1[player1->x][player1->y - 1] != 'm' && map1[player1->x][player1->y - 1] != 'x')
-        {
-            checkBonusMap1(player1, player1->x, player1->y-1);
-            if (map1[player1->x][player1->y] != bomb)
-                map1[player1->x][player1->y] = '-';
-            player1->y--;
-            map1[player1->x][player1->y] = var;
-        }
-        if (scan == Move->up && map1[player1->x - 1][player1->y] != 'm' && map1[player1->x - 1][player1->y] != 'x')
-        {
-            checkBonusMap1(player1, player1->x-1, player1->y);
-            if (map1[player1->x][player1->y] != bomb)
-                map1[player1->x][player1->y] = '-';
-            player1->x--;
-            map1[player1->x][player1->y] = var;
-        }
+    if (scan == Move->left && map1[player1->x][player1->y - 1] != 'm' && map1[player1->x][player1->y - 1] != 'x')
+    {
+        checkBonusMap1(player1, player1->x, player1->y - 1);
+        if (map1[player1->x][player1->y] != bomb)
+            map1[player1->x][player1->y] = '-';
+        player1->y--;
+        map1[player1->x][player1->y] = var;
+    }
+    if (scan == Move->up && map1[player1->x - 1][player1->y] != 'm' && map1[player1->x - 1][player1->y] != 'x')
+    {
+        checkBonusMap1(player1, player1->x - 1, player1->y);
+        if (map1[player1->x][player1->y] != bomb)
+            map1[player1->x][player1->y] = '-';
+        player1->x--;
+        map1[player1->x][player1->y] = var;
+    }
 
-        if (scan == Move->down && map1[player1->x + 1][player1->y] != 'm' && map1[player1->x + 1][player1->y] != 'x')
-        {
-            checkBonusMap1(player1, player1->x+1, player1->y);
-            if (map1[player1->x][player1->y] != bomb)
-                map1[player1->x][player1->y] = '-';
-            player1->x++;
-            map1[player1->x][player1->y] = var;
-        }
+    if (scan == Move->down && map1[player1->x + 1][player1->y] != 'm' && map1[player1->x + 1][player1->y] != 'x')
+    {
+        checkBonusMap1(player1, player1->x + 1, player1->y);
+        if (map1[player1->x][player1->y] != bomb)
+            map1[player1->x][player1->y] = '-';
+        player1->x++;
+        map1[player1->x][player1->y] = var;
+    }
 }
 
-void playInMap2(Player *player1, char scan, Move* Move, char var, char bomb, char touch, int count)
+void playInMap2(Player *player1, char scan, Move *Move, char var, char bomb, char touch, int count)
 {
-            if (scan == touch && player1->nbrBombe != 0)
-            {
-                map2[player1->x][player1->y] = bomb;
-                player1->bomb->bombX = player1->x;
-                player1->bomb->bombY = player1->y;
-                player1->nbrBombe--;
-            }
-            if (player1->nbrBombe == 0)
-                printf("\n Plus aucune bombes restantes le joueur %c\n", var);
+    if (scan == touch && player1->nbrBombe != 0)
+    {
+        map2[player1->x][player1->y] = bomb;
+        player1->bomb->bombX = player1->x;
+        player1->bomb->bombY = player1->y;
+        player1->nbrBombe--;
+    }
+    if (player1->nbrBombe == 0)
+        printf("\n Plus aucune bombes restantes le joueur %c\n", var);
 
-        if (count == 0 && map2[player1->bomb->bombX][player1->bomb->bombY] == bomb)
-        {
-            int i = 1;
-            map2[player1->bomb->bombX][player1->bomb->bombY] = '-';
+    if (count == 0 && map2[player1->bomb->bombX][player1->bomb->bombY] == bomb)
+    {
+        int i = 1;
+        map2[player1->bomb->bombX][player1->bomb->bombY] = '-';
 
-            if (map2[player1->bomb->bombX][player1->bomb->bombY + i] == 'p' || map2[player1->bomb->bombX][player1->bomb->bombY + i] == 'g')
-                map2[player1->bomb->bombX][player1->bomb->bombY + i] = '-';
-            if (map2[player1->bomb->bombX][player1->bomb->bombY + i] != 'x' &&
-                map2[player1->bomb->bombX][player1->bomb->bombY + i] != '-' &&
-                map2[player1->bomb->bombX][player1->bomb->bombY + i] != 'U' &&
-                map2[player1->bomb->bombX][player1->bomb->bombY + i] != 'D' &&
-                map2[player1->bomb->bombX][player1->bomb->bombY + i] != 'J' &&
-                map2[player1->bomb->bombX][player1->bomb->bombY + i] != 'B' &&
-                map2[player1->bomb->bombX][player1->bomb->bombY + i] != 'R' &&
-                map2[player1->bomb->bombX][player1->bomb->bombY + i] != 'I')
-                map2[player1->bomb->bombX][player1->bomb->bombY + i] = resulteBonus();
+        if (map2[player1->bomb->bombX][player1->bomb->bombY + i] == 'p' || map2[player1->bomb->bombX][player1->bomb->bombY + i] == 'g')
+            map2[player1->bomb->bombX][player1->bomb->bombY + i] = '-';
+        if (map2[player1->bomb->bombX][player1->bomb->bombY + i] != 'x' &&
+            map2[player1->bomb->bombX][player1->bomb->bombY + i] != '-' &&
+            map2[player1->bomb->bombX][player1->bomb->bombY + i] != 'U' &&
+            map2[player1->bomb->bombX][player1->bomb->bombY + i] != 'D' &&
+            map2[player1->bomb->bombX][player1->bomb->bombY + i] != 'J' &&
+            map2[player1->bomb->bombX][player1->bomb->bombY + i] != 'B' &&
+            map2[player1->bomb->bombX][player1->bomb->bombY + i] != 'R' &&
+            map2[player1->bomb->bombX][player1->bomb->bombY + i] != 'I')
+            map2[player1->bomb->bombX][player1->bomb->bombY + i] = resulteBonus();
 
-            if (map2[player1->bomb->bombX][player1->bomb->bombY - i] == 'p' || map2[player1->bomb->bombX][player1->bomb->bombY - i] == 'g')
-                map2[player1->bomb->bombX][player1->bomb->bombY - i] = '-';
-            if (map2[player1->bomb->bombX][player1->bomb->bombY - i] != 'x' &&
-                map2[player1->bomb->bombX][player1->bomb->bombY - i] != '-' &&
-                map2[player1->bomb->bombX][player1->bomb->bombY - i] != 'U' &&
-                map2[player1->bomb->bombX][player1->bomb->bombY - i] != 'D' &&
-                map2[player1->bomb->bombX][player1->bomb->bombY - i] != 'J' &&
-                map2[player1->bomb->bombX][player1->bomb->bombY - i] != 'B' &&
-                map2[player1->bomb->bombX][player1->bomb->bombY - i] != 'R' &&
-                map2[player1->bomb->bombX][player1->bomb->bombY - i] != 'I')
-                map2[player1->bomb->bombX][player1->bomb->bombY - i] = resulteBonus();
+        if (map2[player1->bomb->bombX][player1->bomb->bombY - i] == 'p' || map2[player1->bomb->bombX][player1->bomb->bombY - i] == 'g')
+            map2[player1->bomb->bombX][player1->bomb->bombY - i] = '-';
+        if (map2[player1->bomb->bombX][player1->bomb->bombY - i] != 'x' &&
+            map2[player1->bomb->bombX][player1->bomb->bombY - i] != '-' &&
+            map2[player1->bomb->bombX][player1->bomb->bombY - i] != 'U' &&
+            map2[player1->bomb->bombX][player1->bomb->bombY - i] != 'D' &&
+            map2[player1->bomb->bombX][player1->bomb->bombY - i] != 'J' &&
+            map2[player1->bomb->bombX][player1->bomb->bombY - i] != 'B' &&
+            map2[player1->bomb->bombX][player1->bomb->bombY - i] != 'R' &&
+            map2[player1->bomb->bombX][player1->bomb->bombY - i] != 'I')
+            map2[player1->bomb->bombX][player1->bomb->bombY - i] = resulteBonus();
 
-            if (map2[player1->bomb->bombX + i][player1->bomb->bombY] == 'p' || map2[player1->bomb->bombX + i][player1->bomb->bombY] == 'g')
-                map2[player1->bomb->bombX + i][player1->bomb->bombY] = '-';
-            if (map2[player1->bomb->bombX + i][player1->bomb->bombY] != 'x' &&
-                map2[player1->bomb->bombX + i][player1->bomb->bombY] != '-' &&
-                map2[player1->bomb->bombX + i][player1->bomb->bombY] != 'U' &&
-                map2[player1->bomb->bombX + i][player1->bomb->bombY] != 'D' &&
-                map2[player1->bomb->bombX + i][player1->bomb->bombY] != 'J' &&
-                map2[player1->bomb->bombX + i][player1->bomb->bombY] != 'B' &&
-                map2[player1->bomb->bombX + i][player1->bomb->bombY] != 'R' &&
-                map2[player1->bomb->bombX + i][player1->bomb->bombY] != 'I')
-                map2[player1->bomb->bombX + i][player1->bomb->bombY] = resulteBonus();
+        if (map2[player1->bomb->bombX + i][player1->bomb->bombY] == 'p' || map2[player1->bomb->bombX + i][player1->bomb->bombY] == 'g')
+            map2[player1->bomb->bombX + i][player1->bomb->bombY] = '-';
+        if (map2[player1->bomb->bombX + i][player1->bomb->bombY] != 'x' &&
+            map2[player1->bomb->bombX + i][player1->bomb->bombY] != '-' &&
+            map2[player1->bomb->bombX + i][player1->bomb->bombY] != 'U' &&
+            map2[player1->bomb->bombX + i][player1->bomb->bombY] != 'D' &&
+            map2[player1->bomb->bombX + i][player1->bomb->bombY] != 'J' &&
+            map2[player1->bomb->bombX + i][player1->bomb->bombY] != 'B' &&
+            map2[player1->bomb->bombX + i][player1->bomb->bombY] != 'R' &&
+            map2[player1->bomb->bombX + i][player1->bomb->bombY] != 'I')
+            map2[player1->bomb->bombX + i][player1->bomb->bombY] = resulteBonus();
 
-            if (map2[player1->bomb->bombX - i][player1->bomb->bombY] == 'p' || map2[player1->bomb->bombX - i][player1->bomb->bombY] == 'g')
-                map2[player1->bomb->bombX - i][player1->bomb->bombY] = '-';
-            if (map2[player1->bomb->bombX - i][player1->bomb->bombY] != 'x' &&
-                map2[player1->bomb->bombX - i][player1->bomb->bombY] != '-' &&
-                map2[player1->bomb->bombX - i][player1->bomb->bombY] != 'U' &&
-                map2[player1->bomb->bombX - i][player1->bomb->bombY] != 'D' &&
-                map2[player1->bomb->bombX - i][player1->bomb->bombY] != 'J' &&
-                map2[player1->bomb->bombX - i][player1->bomb->bombY] != 'B' &&
-                map2[player1->bomb->bombX - i][player1->bomb->bombY] != 'R' &&
-                map2[player1->bomb->bombX - i][player1->bomb->bombY] != 'I')
-                map2[player1->bomb->bombX - i][player1->bomb->bombY] = resulteBonus();
-        }
+        if (map2[player1->bomb->bombX - i][player1->bomb->bombY] == 'p' || map2[player1->bomb->bombX - i][player1->bomb->bombY] == 'g')
+            map2[player1->bomb->bombX - i][player1->bomb->bombY] = '-';
+        if (map2[player1->bomb->bombX - i][player1->bomb->bombY] != 'x' &&
+            map2[player1->bomb->bombX - i][player1->bomb->bombY] != '-' &&
+            map2[player1->bomb->bombX - i][player1->bomb->bombY] != 'U' &&
+            map2[player1->bomb->bombX - i][player1->bomb->bombY] != 'D' &&
+            map2[player1->bomb->bombX - i][player1->bomb->bombY] != 'J' &&
+            map2[player1->bomb->bombX - i][player1->bomb->bombY] != 'B' &&
+            map2[player1->bomb->bombX - i][player1->bomb->bombY] != 'R' &&
+            map2[player1->bomb->bombX - i][player1->bomb->bombY] != 'I')
+            map2[player1->bomb->bombX - i][player1->bomb->bombY] = resulteBonus();
+    }
 
-            if(scan == Move->right && map2[player1->x][player1->y + 1] != 'm' && map2[player1->x][player1->y + 1] != 'x')
-        {
-            checkBonusMap2(player1, player1->x, player1->y+1);
-            if (map2[player1->x][player1->y] != bomb)
-                map2[player1->x][player1->y] = '-';
-            player1->y++;
-            map2[player1->x][player1->y] = var;
-        }
+    if (scan == Move->right && map2[player1->x][player1->y + 1] != 'm' && map2[player1->x][player1->y + 1] != 'x')
+    {
+        checkBonusMap2(player1, player1->x, player1->y + 1);
+        if (map2[player1->x][player1->y] != bomb)
+            map2[player1->x][player1->y] = '-';
+        player1->y++;
+        map2[player1->x][player1->y] = var;
+    }
 
-        if (scan == Move->left && map2[player1->x][player1->y - 1] != 'm' && map2[player1->x][player1->y - 1] != 'x')
-        {
-            checkBonusMap2(player1, player1->x, player1->y-1);
-            if (map2[player1->x][player1->y] != bomb)
-                map2[player1->x][player1->y] = '-';
-            player1->y--;
-            map2[player1->x][player1->y] = var;
-        }
+    if (scan == Move->left && map2[player1->x][player1->y - 1] != 'm' && map2[player1->x][player1->y - 1] != 'x')
+    {
+        checkBonusMap2(player1, player1->x, player1->y - 1);
+        if (map2[player1->x][player1->y] != bomb)
+            map2[player1->x][player1->y] = '-';
+        player1->y--;
+        map2[player1->x][player1->y] = var;
+    }
 
-        if (scan == Move->left && player1->x == 4 && player1->y == 1)
-        {   
-            checkBonusMap2(player1, player1->x, player1->y-1);
-            if (map2[player1->x][player1->y] != bomb)
-                map2[player1->x][player1->y] = '-';
-            player1->y--;
-            map2[player1->x][player1->y] = var;
-        }
-        if (scan == Move->up && map2[player1->x - 1][player1->y] != 'm' && map2[player1->x - 1][player1->y] != 'x')
-        {
-            checkBonusMap2(player1, player1->x-1, player1->y);
-            if (map2[player1->x][player1->y] != bomb)
-                map2[player1->x][player1->y] = '-';
-            player1->x--;
-            map2[player1->x][player1->y] = var;
-        }
+    if (scan == Move->left && player1->x == 4 && player1->y == 1)
+    {
+        checkBonusMap2(player1, player1->x, player1->y - 1);
+        if (map2[player1->x][player1->y] != bomb)
+            map2[player1->x][player1->y] = '-';
+        player1->y--;
+        map2[player1->x][player1->y] = var;
+    }
+    if (scan == Move->up && map2[player1->x - 1][player1->y] != 'm' && map2[player1->x - 1][player1->y] != 'x')
+    {
+        checkBonusMap2(player1, player1->x - 1, player1->y);
+        if (map2[player1->x][player1->y] != bomb)
+            map2[player1->x][player1->y] = '-';
+        player1->x--;
+        map2[player1->x][player1->y] = var;
+    }
 
-        if (scan == Move->down && map2[player1->x + 1][player1->y] != 'm' && map2[player1->x + 1][player1->y] != 'x')
-        {
-            checkBonusMap2(player1, player1->x+1, player1->y);
-            if (map2[player1->x][player1->y] != bomb)
-                map2[player1->x][player1->y] = '-';
-            player1->x++;
-            map2[player1->x][player1->y] = var;
-        }
+    if (scan == Move->down && map2[player1->x + 1][player1->y] != 'm' && map2[player1->x + 1][player1->y] != 'x')
+    {
+        checkBonusMap2(player1, player1->x + 1, player1->y);
+        if (map2[player1->x][player1->y] != bomb)
+            map2[player1->x][player1->y] = '-';
+        player1->x++;
+        map2[player1->x][player1->y] = var;
+    }
 }
 
 void Play(int map, int withFriend)
@@ -547,9 +547,8 @@ void Play(int map, int withFriend)
                 playInMap1(player1, scan, Move, 'p', '*', 'b', countb);
             else
                 playInMap2(player1, scan, Move, 'p', '*', 'b', countb);
-
         }
-        if (map == 1  && withFriend == 2)
+        if (map == 1 && withFriend == 2)
         {
             if ((toYou % 2) == 0)
             {
@@ -562,7 +561,7 @@ void Play(int map, int withFriend)
         }
         printf("\n %d Mouvements avant l'explosion de la Bombe 1 !\n", countb);
         printf("\n %d Mouvements avant l'explosion de la Bombe 2 !\n", counts);
-        if (map == 2  && withFriend == 2)
+        if (map == 2 && withFriend == 2)
         {
             if ((toYou % 2) == 0)
             {
@@ -578,35 +577,36 @@ void Play(int map, int withFriend)
         {
             for (j = 0; j < 9; j++)
             {
-                if (map == 1){
+                if (map == 1)
+                {
                     printf("%c ", map1[i][j]);
-                    
-                    
                 }
             }
             printf("\n");
             j = 0;
         }
-        
+
         for (i = 2; i < 10; i++)
         {
             for (j = 0; j < 5; j++)
             {
-                if (map == 2){
+                if (map == 2)
+                {
                     printf("%c ", map2[i][j]);
-
                 }
-                
             }
             printf("\n");
             j = 0;
         }
-        if(map==2){
+        if (map == 2)
+        {
             checkWinMap2();
-        }else if(map == 1){
+        }
+        else if (map == 1)
+        {
             checkWinMap1();
         }
-            printf("\ntoYou = %d\n", toYou); // a sup
+        printf("\ntoYou = %d\n", toYou); // a sup
         printf("\nEnter your move : \n");
         scan = getchar();
         putchar(scan);
@@ -659,31 +659,30 @@ void Play(int map, int withFriend)
                 counts--;
         }
 
-    if (player1->x == 4 && player1->y == 8 && scan == Move->right)
+        if (player1->x == 4 && player1->y == 8 && scan == Move->right)
         {
             map1[4][8] = '-';
             player1->y = 0;
             player1->x = 4;
             map1[player1->x][player1->y] = 'p';
-    }
-    if (player1->x == 4 && player1->y == 0 && scan == Move->left)
+        }
+        if (player1->x == 4 && player1->y == 0 && scan == Move->left)
         {
-            
+
             map1[player1->x][player1->y] = '-';
             player1->y = 9;
             player1->x = 4;
             map1[player1->x][player1->y] = 'p';
-
-        }  
+        }
         printf("\n BombUp : %d\n", BombUp(player1));
-        //checkWinMap1();
-        //checkWinMap2();
+        // checkWinMap1();
+        // checkWinMap2();
     }
 }
 
 int main()
 {
-    
+
     menu();
     int withFriend = resultMenu();
     resultChoicPlayground(withFriend);

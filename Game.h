@@ -92,7 +92,7 @@ int movementsBeforeExplosion(int count);
 char resulteBonus();
 void checkWinMap1(); 
 void checkWinMap2();
-void checkWinMap3();
+//void checkWinMap3();
 int BombUp(Player *player);
 int BombDown( Player *player);
 int RangeYelow( Player *player);
@@ -101,5 +101,5 @@ int rangeRed( Player *player);
 int invincibility(Player *player);
 int checkBonusMap1(Player *player1, int x, int y);
 int checkBonusMap2(Player *player1, int x, int y);
-int checkBonusMap3(Player *player1, int x, int y);
+//int checkBonusMap3(Player *player1, int x, int y);
 #endif
