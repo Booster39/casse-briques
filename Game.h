@@ -57,11 +57,28 @@ char map2[10][5] = {
     {'x', 'x', 'x', 'x', 'x'},
     {'x', 'p', '-', 'm', 'x'},
     {'x', 'm', 'x', 'm', 'x'},
-    {'-', '-', 'm', 'g', '-'},
-    {'-', '-', 'x', '-', '-'},
+    {'x', '-', 'm', 'g', '-'},
+    {'-', '-', 'm', '-', 'x'},
     {'x', 'm', 'x', 'm', 'x'},
-    {'x', 'm', 'x', 'm', 'x'},
+    {'x', 'm', 'm', 'm', 'x'},
     {'x', 'x', 'x', 'x', 'x'}};
+
+char map3[14][10] = {
+    {'1'},
+    {'5', ' ', '8'},
+    {'x', 'x', 'x', 'x', 'x', 'x', 'x', 'x', 'x', 'x'},
+    {'x', 'p', '-', 'm', '-', '-', 'm', 'm', 'y', 'x'},
+    {'x', 'm', 'x', 'm', 'x', 'm', 'm', 'm', '-', 'x'},
+    {'-', '-', 'm', 'm', '-', 'x', 'x', '-', '-', 'x'},
+    {'-', '-', 'x', '-', '-', 'x', 'x', '-', '-', 'x'},
+    {'x', 'm', 'x', 'm', 'x', '-', 'm', 'm', 'm', 'x'},
+    {'x', 'm', '-', 'm', 'x', 'm', 'm', '-', 'x', '-'},
+    {'x', 'm', 'm', 'x', 'x', 'm', 'm', 'm', 'm', 'x'},
+    {'x', '-', 'm', 'm', 'x', 'm', 'm', 'm', 'm', '-'},
+    {'x', '-', '-', 'm', 'm', 'm', 'x', '-', '-', 'x'},
+    {'x', 'b', 'm', 'm', '-', '-', 'm', '-', 'g', 'x'},
+    {'x', 'x', 'x', 'x', 'x', 'x', 'x', 'x', 'x', 'x'}
+    };
 
 //Funtions
 
@@ -74,7 +91,8 @@ void Play(int i, int withFriend);
 int movementsBeforeExplosion(int count);
 char resulteBonus();
 void checkWinMap1(); 
-void checkWinMap2(); 
+void checkWinMap2();
+void checkWinMap3();
 int BombUp(Player *player);
 int BombDown( Player *player);
 int RangeYelow( Player *player);
@@ -83,4 +101,5 @@ int rangeRed( Player *player);
 int invincibility(Player *player);
 int checkBonusMap1(Player *player1, int x, int y);
 int checkBonusMap2(Player *player1, int x, int y);
+int checkBonusMap3(Player *player1, int x, int y);
 #endif
