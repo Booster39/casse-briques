@@ -15,7 +15,7 @@ typedef struct Player
     int invincibility;
     Bomb *bomb;
 } Player;
-void resulteBonus()
+char resulteBonus()
 {
     int number = rand() % 51;
     if (number >= 6 && number < 9)
