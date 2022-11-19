@@ -31,6 +31,8 @@ clean:
 	$(RM) Makefile~
 	$(RM) include/*.h~
 	$(RM) include/*.h~#
+	$(RM) include/*.h~?
+	$(RM) include/*.h~%
 	$(RM) rm -f *.o
 
 fclean:	clean
