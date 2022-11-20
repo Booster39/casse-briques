@@ -37,6 +37,7 @@ typedef struct Player
     int x;
     int y;
     int invincibility;
+    int range;
     Bomb *bomb;
 } Player;
 

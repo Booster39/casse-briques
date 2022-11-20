@@ -15,6 +15,7 @@ typedef struct Player
     int x;
     int y;
     int invincibility;
+    int range;
     Bomb *bomb;
 } Player;
 char resulteBonus()
@@ -27,7 +28,7 @@ char resulteBonus()
     }
     if (number >= 9 && number < 12)
     {
-        return 'Dz';
+        return 'D';
     }
     if (number >= 12 && number < 18)
     {
@@ -62,20 +63,20 @@ int BombDown(Player *player)
 }
 int RangeYelow(Player *player)
 {
-    player->bomb->range++;
+    player->range++;
     return 0;
 }
 int RangeBlue(Player *player)
 {
-    if (player->bomb->range > 0)
+    if (player->range > 0)
     {
-        player->bomb->range--;
+        player->range--;
     }
     return 0;
 }
 int rangeRed(Player *player)
 {
-    player->bomb->range = 7;
+    player->range = 5;
     return 0;
 }
 int invincibility( Player *player)
