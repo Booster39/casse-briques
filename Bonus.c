@@ -1,4 +1,6 @@
 
+#include <stdlib.h>
+
 typedef struct
 {
     int range;
@@ -17,6 +19,7 @@ typedef struct Player
 } Player;
 char resulteBonus()
 {
+    srand(time(NULL));
     int number = rand() % 51;
     if (number >= 6 && number < 9)
     {
@@ -24,21 +27,21 @@ char resulteBonus()
     }
     if (number >= 9 && number < 12)
     {
-        return 'D';
+        return 'Dz';
     }
-    if (number >= 12 && number < 14)
+    if (number >= 12 && number < 18)
     {
         return 'J';
     }
-    if (number >= 14 && number < 16)
+    if (number >= 18 && number < 20)
     {
         return 'B';
     }
-    if (number >= 16 && number < 18)
+    if (number >= 20 && number < 24)
     {
         return 'R';
     }
-    if (number == 18)
+    if (number == 25)
     {
         return 'I';
     }
