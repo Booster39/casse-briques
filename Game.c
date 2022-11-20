@@ -28,7 +28,7 @@ Move *createMove(char right, char left, char up, char down)
     return move;
 }
 
-Player *createPlayer(int nbrBombe1, int vie1, int x1, int y1, Bomb *bomb1)
+Player *createPlayer(int nbrBombe1, int vie1, int x1, int y1, int range, Bomb *bomb1)
 {
     Player *player = malloc(sizeof(Player));
     player->bomb = malloc(sizeof(Bomb));
@@ -36,6 +36,8 @@ Player *createPlayer(int nbrBombe1, int vie1, int x1, int y1, Bomb *bomb1)
     player->vie = vie1;
     player->x = x1;
     player->y = y1;
+    player->range = range;
+
     return player;
 }
 
@@ -329,7 +331,7 @@ void playInMap1(Player *player1, char scan, Move *Move, char var, char bomb, cha
         printf("\n Plus aucune bombes restantes le joueur %c\n", var);
     if (count == 0 && map1[player1->bomb->bombX][player1->bomb->bombY] == bomb)
     {
-        int i = 1;
+        for(int i= 1; i <= player1->range;i++){
         map1[player1->bomb->bombX][player1->bomb->bombY] = '-';
 
         if (map1[player1->bomb->bombX][player1->bomb->bombY + i] == 'p' || map1[player1->bomb->bombX][player1->bomb->bombY + i] == 'g')
@@ -379,6 +381,7 @@ void playInMap1(Player *player1, char scan, Move *Move, char var, char bomb, cha
             map1[player1->bomb->bombX - i][player1->bomb->bombY] != 'R' &&
             map1[player1->bomb->bombX - i][player1->bomb->bombY] != 'I')
             map1[player1->bomb->bombX - i][player1->bomb->bombY] = resulteBonus();
+    }
     }
 
     if (scan == Move->right && map1[player1->x][player1->y + 1] != 'm' && map1[player1->x][player1->y + 1] != 'x' && map1[player1->x][player1->y + 1] != '*' && map1[player1->x][player1->y + 1] != 'p' && map1[player1->x][player1->y + 1] != 'g')
@@ -643,15 +646,15 @@ void playInMap3(Player *player1, char scan, Move *Move, char var, char bomb, cha
 void Play(int map, int withFriend)
 {
     Move *Move = createMove('d', 'q', 'z', 's');
-    Player *player1 = createPlayer(3, 3, 3, 1, createBomb(1, 5, 3));
-    Player *player2 = createPlayer(3, 3, 5, 3, createBomb(1, 3, 1));
+    Player *player1 = createPlayer(3, 3, 3, 1, 2,createBomb(1, 5, 3));
+    Player *player2 = createPlayer(3, 3, 5, 3,1 , createBomb(1, 3, 1));
 
-    Player *player11 = createPlayer(4, 3, 3, 1, createBomb(1, 3, 1));
-    Player *player21 = createPlayer(4, 3, 12, 8, createBomb(1, 4, 1));
-    Player *player31 = createPlayer(4, 3, 3, 8, createBomb(1, 5, 1));
-    Player *player41 = createPlayer(4, 3, 12, 1, createBomb(1, 6, 1));
+    Player *player11 = createPlayer(4, 3, 3, 1, 1 ,createBomb(1, 3, 1));
+    Player *player21 = createPlayer(4, 3, 12, 8,1, createBomb(1, 4, 1));
+    Player *player31 = createPlayer(4, 3, 3, 8, 1, createBomb(1, 5, 1));
+    Player *player41 = createPlayer(4, 3, 12, 1, 1, createBomb(1, 6, 1));
 
-    Player *playerbot = createPlayer(1, 3, 5, 3, createBomb(1, 3, 1));
+    Player *playerbot = createPlayer(1, 3, 5, 3, 1, createBomb(1, 3, 1));
 
     int i = 0;
     int j = 0;
