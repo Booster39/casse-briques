@@ -158,7 +158,7 @@ void choicPlayground()
     printf("\n");
     printf("    Map 2 \n");
 
-    for (i = 2; i < 10; i++)
+    for (i = 2; i < 13; i++)
     {
         for (j = 0; j < 5; j++)
         {
@@ -381,7 +381,7 @@ void playInMap1(Player *player1, char scan, Move *Move, char var, char bomb, cha
             map1[player1->bomb->bombX - i][player1->bomb->bombY] = resulteBonus();
     }
 
-    if (scan == Move->right && map1[player1->x][player1->y + 1] != 'm' && map1[player1->x][player1->y + 1] != 'x' && map1[player1->x][player1->y + 1] != '*' && map1[player1->x][player1->y + 1] != '#')
+    if (scan == Move->right && map1[player1->x][player1->y + 1] != 'm' && map1[player1->x][player1->y + 1] != 'x' && map1[player1->x][player1->y + 1] != '*' && map1[player1->x][player1->y + 1] != 'p' && map1[player1->x][player1->y + 1] != 'g')
     {
         checkBonusMap1(player1, player1->x, player1->y + 1);
         if (map1[player1->x][player1->y] != bomb)
@@ -390,7 +390,7 @@ void playInMap1(Player *player1, char scan, Move *Move, char var, char bomb, cha
         map1[player1->x][player1->y] = var;
     }
 
-    if (scan == Move->left && map1[player1->x][player1->y - 1] != 'm' && map1[player1->x][player1->y - 1] != 'x' && map1[player1->x][player1->y - 1] != '*' && map1[player1->x][player1->y - 1] != '#')
+    if (scan == Move->left && map1[player1->x][player1->y - 1] != 'm' && map1[player1->x][player1->y - 1] != 'x' && map1[player1->x][player1->y - 1] != '*'  && map1[player1->x][player1->y - 1] != 'p' && map1[player1->x][player1->y - 1] != 'g')
     {
         checkBonusMap1(player1, player1->x, player1->y - 1);
         if (map1[player1->x][player1->y] != bomb)
@@ -398,7 +398,7 @@ void playInMap1(Player *player1, char scan, Move *Move, char var, char bomb, cha
         player1->y--;
         map1[player1->x][player1->y] = var;
     }
-    if (scan == Move->up && map1[player1->x - 1][player1->y] != 'm' && map1[player1->x - 1][player1->y] != 'x' && map1[player1->x-1][player1->y] != '*' && map1[player1->x-1][player1->y] != '#')
+    if (scan == Move->up && map1[player1->x - 1][player1->y] != 'm' && map1[player1->x - 1][player1->y] != 'x' && map1[player1->x - 1][player1->y] != '*' && map1[player1->x - 1][player1->y] != 'p' && map1[player1->x - 1][player1->y] != 'g')
     {
         checkBonusMap1(player1, player1->x - 1, player1->y);
         if (map1[player1->x][player1->y] != bomb)
@@ -407,7 +407,7 @@ void playInMap1(Player *player1, char scan, Move *Move, char var, char bomb, cha
         map1[player1->x][player1->y] = var;
     }
 
-    if (scan == Move->down && map1[player1->x + 1][player1->y] != 'm' && map1[player1->x + 1][player1->y] != 'x' && map1[player1->x+1][player1->y] != '*' && map1[player1->x+1][player1->y] != '#')
+    if (scan == Move->down && map1[player1->x + 1][player1->y] != 'm' && map1[player1->x + 1][player1->y] != 'x' && map1[player1->x + 1][player1->y] != '*' && map1[player1->x + 1][player1->y] != 'p' && map1[player1->x + 1][player1->y] != 'g')
     {
         checkBonusMap1(player1, player1->x + 1, player1->y);
         if (map1[player1->x][player1->y] != bomb)
@@ -483,7 +483,7 @@ void playInMap2(Player *player1, char scan, Move *Move, char var, char bomb, cha
             map2[player1->bomb->bombX - i][player1->bomb->bombY] = resulteBonus();
     }
 
-    if (scan == Move->right && map2[player1->x][player1->y + 1] != 'm' && map2[player1->x][player1->y + 1] != 'x' && map2[player1->x][player1->y + 1] != '*' && map2[player1->x][player1->y + 1] != '#')
+    if (scan == Move->right && map2[player1->x][player1->y + 1] != 'm' && map2[player1->x][player1->y + 1] != 'x' && map2[player1->x][player1->y + 1] != '*' && map2[player1->x][player1->y + 1] != 'g' && map2[player1->x][player1->y + 1] != 'p')
     {
         checkBonusMap2(player1, player1->x, player1->y + 1);
         if (map2[player1->x][player1->y] != bomb)
@@ -492,7 +492,7 @@ void playInMap2(Player *player1, char scan, Move *Move, char var, char bomb, cha
         map2[player1->x][player1->y] = var;
     }
 
-    if (scan == Move->left && map2[player1->x][player1->y - 1] != 'm' && map2[player1->x][player1->y - 1] != 'x' && map2[player1->x][player1->y - 1] != '*' && map2[player1->x][player1->y - 1] != '#')
+    if (scan == Move->left && map2[player1->x][player1->y - 1] != 'm' && map2[player1->x][player1->y - 1] != 'x' && map2[player1->x][player1->y - 1] != '*' && map2[player1->x][player1->y - 1] != 'p' && map2[player1->x][player1->y - 1] != 'g')
     {
         checkBonusMap2(player1, player1->x, player1->y - 1);
         if (map2[player1->x][player1->y] != bomb)
@@ -509,7 +509,7 @@ void playInMap2(Player *player1, char scan, Move *Move, char var, char bomb, cha
         player1->y--;
         map2[player1->x][player1->y] = var;
     }
-    if (scan == Move->up && map2[player1->x - 1][player1->y] != 'm' && map2[player1->x - 1][player1->y] != 'x' && map2[player1->x-1][player1->y] != '*' && map2[player1->x-1][player1->y] != '#')
+    if (scan == Move->up && map2[player1->x - 1][player1->y] != 'm' && map2[player1->x - 1][player1->y] != 'x' && map2[player1->x - 1][player1->y] != '*' && map2[player1->x - 1][player1->y] != 'p' && map2[player1->x - 1][player1->y] != 'g')
     {
         checkBonusMap2(player1, player1->x - 1, player1->y);
         if (map2[player1->x][player1->y] != bomb)
@@ -518,7 +518,7 @@ void playInMap2(Player *player1, char scan, Move *Move, char var, char bomb, cha
         map2[player1->x][player1->y] = var;
     }
 
-    if (scan == Move->down && map2[player1->x + 1][player1->y] != 'm' && map2[player1->x + 1][player1->y] != 'x' && map2[player1->x+1][player1->y] != '*' && map2[player1->x+1][player1->y] != '#')
+    if (scan == Move->down && map2[player1->x + 1][player1->y] != 'm' && map2[player1->x + 1][player1->y] != 'x' && map2[player1->x + 1][player1->y] != '*' && map2[player1->x + 1][player1->y] != 'p' && map2[player1->x + 1][player1->y] != 'g')
     {
         checkBonusMap2(player1, player1->x + 1, player1->y);
         if (map2[player1->x][player1->y] != bomb)
@@ -595,7 +595,7 @@ void playInMap3(Player *player1, char scan, Move *Move, char var, char bomb, cha
             map3[player1->bomb->bombX - i][player1->bomb->bombY] = resulteBonus();
     }
 
-    if (scan == Move->right && map3[player1->x][player1->y + 1] != 'm' && map3[player1->x][player1->y + 1] != 'x')
+    if (scan == Move->right && map3[player1->x][player1->y + 1] != 'm' && map3[player1->x][player1->y + 1] != 'x' && map3[player1->x][player1->y + 1] != 'p' && map3[player1->x][player1->y + 1] != 'g')
     {
         checkBonusMap3(player1, player1->x, player1->y + 1);
         if (map3[player1->x][player1->y] != bomb)
@@ -643,8 +643,8 @@ void playInMap3(Player *player1, char scan, Move *Move, char var, char bomb, cha
 void Play(int map, int withFriend)
 {
     Move *Move = createMove('d', 'q', 'z', 's');
-    Player *player1 = createPlayer(1, 3, 3, 1, createBomb(1, 5, 3));
-    Player *player2 = createPlayer(1, 3, 5, 3, createBomb(1, 3, 1));
+    Player *player1 = createPlayer(3, 3, 3, 1, createBomb(1, 5, 3));
+    Player *player2 = createPlayer(3, 3, 5, 3, createBomb(1, 3, 1));
 
     Player *player11 = createPlayer(4, 3, 3, 1, createBomb(1, 3, 1));
     Player *player21 = createPlayer(4, 3, 12, 8, createBomb(1, 4, 1));
@@ -677,6 +677,7 @@ void Play(int map, int withFriend)
 
     while (scan != 'f')
     {
+        system("cls");
 
         if (scan == 'b')
             countb = 5;
@@ -708,7 +709,7 @@ void Play(int map, int withFriend)
             }
         }
         printf("\n %d : Compteur déclenché par la touche 'b' !\n", countb);
-        printf("\n %d : Compteur déclenché par la touche 's' !\n", counts);
+        printf("\n %d : Compteur déclenché par la touche 'r' !\n", counts);
         if (map == 3 && withFriend == 2)
         {
             printf("\n %d : Compteur déclenché par la touche 'd' !\n", countd);
@@ -745,7 +746,8 @@ void Play(int map, int withFriend)
                 playInMap3(player41, scan, Move, 'b', '$', 'n', countf);
             }
         }
-
+        
+        if(map == 1){
         for (i = 2; i < 7; i++)
         {
             for (j = 0; j < 9; j++)
@@ -758,31 +760,34 @@ void Play(int map, int withFriend)
             printf("\n");
             j = 0;
         }
-
-        for (i = 2; i < 10; i++)
+        }
+        if (map == 2)
         {
-            for (j = 0; j < 5; j++)
+            for (i = 2; i < 13; i++)
             {
-                if (map == 2)
+                for (j = 0; j < 5; j++)
                 {
                     printf("%c ", map2[i][j]);
                 }
+                printf("\n");
+                j = 0;
             }
-            printf("\n");
-            j = 0;
         }
-        for (i = 2; i < 14; i++)
-        {
-            for (j = 0; j < 10; j++)
+        if (map == 3){
+            for (i = 2; i < 14; i++)
             {
-                if (map == 3)
+                for (j = 0; j < 10; j++)
                 {
-                    printf("%c ", map3[i][j]);
+                    if (map == 3)
+                    {
+                        printf("%c ", map3[i][j]);
+                    }
                 }
+                printf("\n");
+                j = 0;
             }
-            printf("\n");
-            j = 0;
         }
+        
         if (map == 2 && withFriend == 2)
         {
             checkWinMap2();
@@ -863,6 +868,8 @@ void Play(int map, int withFriend)
             player1->x = 4;
             map1[player1->x][player1->y] = 'p';
         }
+        
+
         // checkWinMap1();
         // checkWinMap2();
     }
