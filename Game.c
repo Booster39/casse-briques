@@ -638,8 +638,8 @@ void playInMap3(Player *player1, char scan, Move *Move, char var, char bomb, cha
 void Play(int map, int withFriend)
 {
     Move *Move = createMove('d', 'q', 'z', 's');
-    Player *player1 = createPlayer(3, 3, 3, 1, 2,createBomb(1, 5, 3));
-    Player *player2 = createPlayer(3, 3, 5, 3,1 , createBomb(1, 3, 1));
+    Player *player1 = createPlayer(3, 3, 3, 1, 1,createBomb(1, 5, 3));
+    Player *player2 = createPlayer(3, 3, 5, 3, 1, createBomb(1, 3, 1));
 
     Player *player11 = createPlayer(4, 3, 3, 1, 1 ,createBomb(1, 3, 1));
     Player *player21 = createPlayer(4, 3, 12, 8,1, createBomb(1, 4, 1));
