@@ -704,7 +704,7 @@ void Play(int map, int withFriend)
             }
             else if ((toYou % 2) == 1)
             {
-                playInMap1(player2, scan, Move, 'g', '#', 'r', counts);
+                playInMap1(player2, scan, Move, 'g', '*', 'r', counts);
             }
         }
         printf("\n %d Mouvements avant l'explosion de la Bombe 1 !\n", countb);
@@ -722,7 +722,7 @@ void Play(int map, int withFriend)
             }
             else if ((toYou % 2) == 1)
             {
-                playInMap2(player2, scan, Move, 'g', '#', 'r', counts);
+                playInMap2(player2, scan, Move, 'g', '*', 'r', counts);
             }
         }
         if (map == 3 && withFriend == 2)
@@ -734,7 +734,7 @@ void Play(int map, int withFriend)
             }
             else if ((toYou % 4) == 2)
             {
-                playInMap3(player21, scan, Move, 'g', '#', 'r', counts);
+                playInMap3(player21, scan, Move, 'g', '*', 'r', counts);
             }
             else if ((toYou % 4) == 3)
             {
