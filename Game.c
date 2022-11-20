@@ -1,5 +1,5 @@
 #include "Game.h"
-
+// instanciation 
 Map *createMap(int nbrbomb, char **map, int x, int y)
 {
     Map *Playground = malloc(sizeof(Map));
@@ -41,11 +41,9 @@ Player *createPlayer(int nbrBombe1, int vie1, int x1, int y1, int range, Bomb *b
     return player;
 }
 
+// verif gagnant
 void checkWinMap1()
 {
-    // si -5 == 0winner
-    // si -2 == G gagne
-    // si -1 == P gagne
     int compteur = 0;
 
     for (int i = 2; i < 7; i++)
@@ -63,10 +61,6 @@ void checkWinMap1()
             if (map1[i][j] == '*')
             {
                 compteur += 4;
-            }
-            if (map1[i][j] == "#")
-            {
-                compteur += 8;
             }
         }
     }
@@ -88,9 +82,6 @@ void checkWinMap1()
 }
 void checkWinMap2()
 {
-    // si -5 == 0winner
-    // si -2 == G gagne
-    // si -1 == P gagne
     int compteur = 0;
 
     for (int i = 2; i < 10; i++)
@@ -100,10 +91,6 @@ void checkWinMap2()
             if (map2[i][j] == 'g')
             {
                 compteur += 3;
-            }
-            if (map2[i][j] == "#")
-            {
-                compteur += 1;
             }
             if (map2[i][j] == 'p')
             {
@@ -131,6 +118,7 @@ void checkWinMap2()
         printf("");
     }
 }
+// creation du menu demarrage 
 void menu()
 {
     printf("Menu :\n\n");
@@ -185,6 +173,7 @@ void choicPlayground()
     }
     printf("\nEnter your choice : 1 or 2 or 3 for exit\n\n");
 }
+// choix du mode 
 
 int resultMenu()
 {
@@ -218,7 +207,7 @@ int resultMenu()
     }
     return c;
 }
-
+// recup map entrer 
 Map *getMap(int i)
 {
     Map *map11 = createMap(1, map1, 7, 9);
@@ -270,6 +259,7 @@ int resultChoicPlayground(int withFriend)
     return c;
 }
 
+// verif si le joueur se dirige vers un bonus
 int checkBonusMap3(Player *player1, int x, int y)
 {
     if (map3[x][y] == 'U')
@@ -317,7 +307,7 @@ int checkBonusMap1(Player *player1, int x, int y)
     if (map1[x][y] == 'I')
         invincibility(player1);
 }
-
+// fonction mouvement jopeur et bombe
 void playInMap1(Player *player1, char scan, Move *Move, char var, char bomb, char touch, int count)
 {
     if (scan == touch && player1->nbrBombe != 0)
@@ -643,6 +633,8 @@ void playInMap3(Player *player1, char scan, Move *Move, char var, char bomb, cha
     }
 }
 
+
+// fonction principalc
 void Play(int map, int withFriend)
 {
     Move *Move = createMove('d', 'q', 'z', 's');
@@ -873,10 +865,11 @@ void Play(int map, int withFriend)
         }
         
 
-        // checkWinMap1();
-        // checkWinMap2();
     }
 }
+
+
+
 
 int main()
 {

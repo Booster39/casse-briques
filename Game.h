@@ -50,7 +50,7 @@ char map1[7][9] = {
     {'x', '-', 'm', 'm', 'm', 'm', 'm', '-', '-'},
     {'-', '-', '-', 'g', '-', 'm', 'm', '-', 'x'},
     {'x', 'x', 'x', 'x', 'x', 'x', 'x', 'x', 'x'}};
-// 4 - 0 // 4 - 8
+
 
 char map2[13][5] = {
     {'1'},
@@ -91,7 +91,6 @@ void menu();
 int resultMenu();
 Move *createMove(char right, char left, char up, char down);
 int resultChoicPlayground(int withFriend);
-void putBomb(Map *map, int x, int y, Player *player);
 void Play(int i, int withFriend);
 int movementsBeforeExplosion(int count);
 char resulteBonus();
