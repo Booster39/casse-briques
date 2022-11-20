@@ -707,12 +707,12 @@ void Play(int map, int withFriend)
                 playInMap1(player2, scan, Move, 'g', '*', 'r', counts);
             }
         }
-        printf("\n %d Mouvements avant l'explosion de la Bombe 1 !\n", countb);
-        printf("\n %d Mouvements avant l'explosion de la Bombe 2 !\n", counts);
+        printf("\n %d : Compteur déclenché par la touche 'b' !\n", countb);
+        printf("\n %d : Compteur déclenché par la touche 's' !\n", counts);
         if (map == 3 && withFriend == 2)
         {
-            printf("\n %d Mouvements avant l'explosion de la Bombe 3 !\n", countd);
-            printf("\n %d Mouvements avant l'explosion de la Bombe 4 !", countf);
+            printf("\n %d : Compteur déclenché par la touche 'd' !\n", countd);
+            printf("\n %d : Compteur déclenché par la touche 'f' !", countf);
         }
         if (map == 2 && withFriend == 2)
         {
